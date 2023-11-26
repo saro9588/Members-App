@@ -1,6 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
+import { TextField } from "@radix-ui/themes";
 
 type FormData = {
   firstName: string;
@@ -19,21 +20,11 @@ export default function Home() {
   return (
     <>
       <div> Hello World</div>
-      <form onSubmit={onSubmit}>
-        <label>First Name</label>
-        <input {...register("firstName")} />
-        <label>Last Name</label>
-        <input {...register("lastName")} />
-        <button
-          type="button"
-          onClick={() => {
-            setValue("lastName", "luo"); // ✅
-            setValue("firstName", true); // ❌: true is not string
-            errors.bill; // ❌: property bill does not exist
-          }}
-        >
-          SetValue
-        </button>
+      <form className="max-w-xl space-y-3">
+        <TextField.Root>
+          <TextField.Input placeholder="firstname" />
+          <TextField.Input placeholder="lastname" />
+        </TextField.Root>
       </form>
       <Link href="/users">Click Me</Link>
     </>
