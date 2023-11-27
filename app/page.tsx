@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
-import { TextField } from "@radix-ui/themes";
+import { Button, TextField } from "@radix-ui/themes";
 
 type FormData = {
   firstName: string;
@@ -19,14 +19,23 @@ export default function Home() {
   // firstName and lastName will have correct type
   return (
     <>
-      <div> Hello World</div>
-      <form className="max-w-xl space-y-3">
-        <TextField.Root>
-          <TextField.Input placeholder="firstname" />
-          <TextField.Input placeholder="lastname" />
-        </TextField.Root>
+      <div> New Entry</div>
+      <form className="max-w-xl space-y-3 mb-5" onSubmit={onSubmit}>
+        <TextField.Input
+          {...register("firstName", {
+            required: true,
+          })}
+          placeholder="firstname"
+        />
+        <TextField.Input
+          {...register("lastName", { required: true })}
+          placeholder="lastname"
+        />
+        <Button type="submit">Submit</Button>
       </form>
-      <Link href="/users">Click Me</Link>
+      <Button className="">
+        <Link href="/users">All Users</Link>
+      </Button>
     </>
   );
 }

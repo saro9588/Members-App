@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React from "react";
-import { FaBug } from "react-icons/fa";
+import { AiFillEdit } from "react-icons/ai";
 import { usePathname } from "next/navigation";
 import classnames from "classnames";
 
@@ -10,12 +10,12 @@ const NavBar = () => {
 
   const links = [
     { label: "Dashboard", href: "/" },
-    { label: "Users", href: "/users" },
+    { label: "All Users", href: "/users" },
   ];
   return (
     <nav className="flex space-x-6 border-b mb-5 px-5 h-14 items-center">
       <Link href="/">
-        <FaBug />
+        <AiFillEdit />
       </Link>
       <ul className="flex space-x-6">
         {links.map((link) => (
