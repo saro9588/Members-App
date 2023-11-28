@@ -5,7 +5,6 @@ import { useForm, Controller } from "react-hook-form";
 import { Button, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
 import dynamic from "next/dynamic";
 const SimpleMdeEditor = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
@@ -14,8 +13,8 @@ const SimpleMdeEditor = dynamic(() => import("react-simplemde-editor"), {
 const NewUser = () => {
   const router = useRouter();
   interface UserForm {
-    firstname: string;
-    lastname: string;
+    firstName: string;
+    lastName: string;
     notes: string;
   }
   const {
@@ -36,13 +35,13 @@ const NewUser = () => {
       <form className="max-w-xl space-y-3 mb-5" onSubmit={onSubmit}>
         <TextField.Root>
           <TextField.Input
-            {...register("firstname", {
+            {...register("firstName", {
               required: true,
             })}
             placeholder="firstname"
           />
           <TextField.Input
-            {...register("lastname", { required: true })}
+            {...register("lastName", { required: true })}
             placeholder="lastname"
           />
         </TextField.Root>
