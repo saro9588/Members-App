@@ -10,7 +10,7 @@ export default function Home() {
         <Link href="/users">All Users</Link>
       </Button>
       <Button className="">
-        <Link href="/new">Create User</Link>
+        <Link href="/users/new">Create User</Link>
       </Button>
     </>
   );

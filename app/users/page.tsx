@@ -36,7 +36,7 @@ const AllUsers = () => {
         </Table.Body>
       </Table.Root>
       <Button>
-        <Link href="/">Back</Link>
+        <Link href="/">Dashboard</Link>
       </Button>
     </>
   );

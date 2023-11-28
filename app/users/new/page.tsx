@@ -1,22 +1,21 @@
-'use client';
+"use client";
 import Link from "next/link";
 import "easymde/dist/easymde.min.css";
 import { useForm, Controller } from "react-hook-form";
 import { Button, TextField } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import dynamic from "next/dynamic";
 
-const SimpleMdeEditor = dynamic(
-	() => import("react-simplemde-editor"),
-	{ ssr: false }
-);
+import dynamic from "next/dynamic";
+const SimpleMdeEditor = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
 
 const NewUser = () => {
   const router = useRouter();
   interface UserForm {
-    firstName: string;
-    lastName: string;
+    firstname: string;
+    lastname: string;
     notes: string;
   }
   const {
@@ -28,22 +27,22 @@ const NewUser = () => {
   } = useForm<UserForm>();
   const onSubmit = handleSubmit(async (data) => {
     await axios.post("/api/users", data);
-    reset()
+    reset();
   });
   // firstName and lastName will have correct type
   return (
     <>
-      <div>NewUser</div>
+      <div>Create a New User</div>
       <form className="max-w-xl space-y-3 mb-5" onSubmit={onSubmit}>
         <TextField.Root>
           <TextField.Input
-            {...register("firstName", {
+            {...register("firstname", {
               required: true,
             })}
             placeholder="firstname"
           />
           <TextField.Input
-            {...register("lastName", { required: true })}
+            {...register("lastname", { required: true })}
             placeholder="lastname"
           />
         </TextField.Root>
