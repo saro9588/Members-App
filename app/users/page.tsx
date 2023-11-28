@@ -9,6 +9,7 @@ interface UserForm {
   firstname: string;
   lastname: string;
   notes: string;
+  createdAT: string;
 }
 
 const AllUsers = () => {
@@ -36,7 +37,7 @@ const AllUsers = () => {
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell>Full name</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Age</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Sign Up Date</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Notes</Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
@@ -45,7 +46,7 @@ const AllUsers = () => {
             {users.map((user) => (
               <Table.Row key={user.id}>
                 <Table.RowHeaderCell>{`${user.firstname} ${user.lastname}`}</Table.RowHeaderCell>
-                <Table.Cell>{user.lastname}</Table.Cell>
+                <Table.Cell>{user.createdAT}</Table.Cell>
                 <Table.Cell>{user.notes}</Table.Cell>
               </Table.Row>
             ))}

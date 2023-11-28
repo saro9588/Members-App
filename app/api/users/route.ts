@@ -19,6 +19,7 @@ export async function POST(request: NextRequest) {
       firstname: body.firstName,
       lastname: body.lastName,
       notes: body.notes,
+      createdAT: body.createdAT,
     },
   });
 
