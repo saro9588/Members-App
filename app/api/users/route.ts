@@ -3,8 +3,8 @@ import { z } from "zod";
 import prisma from "@/prisma/client";
 
 const createUserSchema = z.object({
-  firstname: z.string().min(1).max(25),
-  lastname: z.string().min(1).max(25),
+  firstName: z.string().min(1).max(25),
+  lastName: z.string().min(1).max(25),
   notes: z.string().min(1),
 });
 
@@ -14,10 +14,10 @@ export async function POST(request: NextRequest) {
   if (!validation.success)
     return NextResponse.json(validation.error.errors, { status: 400 });
 
-  const newUser = await prisma.user.create({
+  const newUser = await prisma.users.create({
     data: {
-      firstname: body.firstname,
-      lastname: body.lastname,
+      firstname: body.firstName,
+      lastname: body.lastName,
       notes: body.notes,
     },
   });
