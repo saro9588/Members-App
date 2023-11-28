@@ -8,6 +8,7 @@ import dynamic from "next/dynamic";
 const SimpleMdeEditor = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
 });
+import { z } from "zod";
 
 const NewUser = () => {
   interface UserForm {
@@ -21,7 +22,7 @@ const NewUser = () => {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserForm>();
+  } = useForm<UserForm>({});
   const onSubmit = handleSubmit(async (data) => {
     await axios.post("/api/users", data);
     reset();
@@ -31,18 +32,19 @@ const NewUser = () => {
     <>
       <div>Create a New User</div>
       <form className="max-w-xl space-y-3 mb-5" onSubmit={onSubmit}>
-        <TextField.Root>
-          <TextField.Input
-            {...register("firstName", {
-              required: true,
-            })}
-            placeholder="firstname"
-          />
-          <TextField.Input
-            {...register("lastName", { required: true })}
-            placeholder="lastname"
-          />
-        </TextField.Root>
+        <TextField.Input
+          {...register("firstName", {
+            required: "This is required.",
+          })}
+          placeholder="firstname"
+        />
+        <p>{errors.firstName?.message}</p>
+        <TextField.Input
+          {...register("lastName", { required: "This is required." })}
+          placeholder="lastname"
+        />
+        <p>{errors.lastName?.message}</p>
+
         <Controller
           name="notes"
           control={control}
@@ -50,7 +52,7 @@ const NewUser = () => {
             <SimpleMdeEditor placeholder="notes..." {...field} />
           )}
         />
-
+        <p>{errors.notes?.message}</p>
         <Button type="submit">Submit</Button>
       </form>
       <Button className="">

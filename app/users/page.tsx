@@ -6,8 +6,8 @@ import axios from "axios";
 
 interface UserForm {
   id: number;
-  firstName: string;
-  lastName: string;
+  firstname: string;
+  lastname: string;
   notes: string;
 }
 
@@ -19,6 +19,7 @@ const AllUsers = () => {
       try {
         const response = await axios.get("/api/users");
         setUsers(response.data);
+        console.log(response.data);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -43,8 +44,8 @@ const AllUsers = () => {
           <Table.Body>
             {users.map((user) => (
               <Table.Row key={user.id}>
-                <Table.RowHeaderCell>{`${user.firstName} ${user.lastName}`}</Table.RowHeaderCell>
-                <Table.Cell>{user.lastName}</Table.Cell>
+                <Table.RowHeaderCell>{`${user.firstname} ${user.lastname}`}</Table.RowHeaderCell>
+                <Table.Cell>{user.lastname}</Table.Cell>
                 <Table.Cell>{user.notes}</Table.Cell>
               </Table.Row>
             ))}
