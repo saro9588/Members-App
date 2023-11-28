@@ -4,14 +4,12 @@ import "easymde/dist/easymde.min.css";
 import { useForm, Controller } from "react-hook-form";
 import { Button, TextField } from "@radix-ui/themes";
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import dynamic from "next/dynamic";
 const SimpleMdeEditor = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
 });
 
 const NewUser = () => {
-  const router = useRouter();
   interface UserForm {
     firstName: string;
     lastName: string;

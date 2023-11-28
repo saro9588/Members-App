@@ -24,3 +24,9 @@ export async function POST(request: NextRequest) {
 
   return NextResponse.json(newUser, { status: 201 });
 }
+
+export async function GET(request: NextRequest) {
+  const users = await prisma.user.findMany(); // Fetch all users from the database using Prisma
+
+  return NextResponse.json(users, { status: 200 }); // Return users as JSON response with status 200
+}
