@@ -48,6 +48,13 @@ const AllUsers = () => {
                 <Table.RowHeaderCell>{`${user.firstname} ${user.lastname}`}</Table.RowHeaderCell>
                 <Table.Cell>{user.createdAT}</Table.Cell>
                 <Table.Cell>{user.notes}</Table.Cell>
+                <Table.Cell>
+                  {
+                    <Button>
+                      <Link href="users/new/userInfo">More</Link>
+                    </Button>
+                  }
+                </Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
