@@ -12,7 +12,7 @@ const UserInfo = () => {
         <li>3</li>
       </ul>
       <Button>
-        <Link href="/users">Back Home</Link>
+        <Link href="/users">Back</Link>
       </Button>
     </>
   );
