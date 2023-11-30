@@ -51,7 +51,7 @@ const AllUsers = () => {
                 <Table.Cell>
                   {
                     <Button>
-                      <Link href="users/new/userInfo">More</Link>
+                      <Link href={`/users/${user.id}`}>More</Link>
                     </Button>
                   }
                 </Table.Cell>
