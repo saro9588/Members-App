@@ -5,7 +5,7 @@ import prisma from "@/prisma/client";
 const createUserSchema = z.object({
   firstName: z.string().min(1).max(25),
   lastName: z.string().min(1).max(25),
-  notes: z.string().min(1, "Notes are required"),
+  info: z.string().min(1, "Notes are required"),
 });
 
 export async function POST(request: NextRequest) {
@@ -18,7 +18,7 @@ export async function POST(request: NextRequest) {
     data: {
       firstname: body.firstName,
       lastname: body.lastName,
-      notes: body.notes,
+      info: body.info,
       createdAT: body.createdAT,
     },
   });

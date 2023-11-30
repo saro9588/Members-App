@@ -14,10 +14,17 @@ model User {
   id        Int      @id @default(autoincrement())
   firstname String   @db.VarChar(25)
   lastname  String   @db.VarChar(25)
-  notes     String   @db.Text
+  info     String   @db.Text
   status    Status   @default(OPEN)
   createdAT DateTime @default(now())
   updatedAT DateTime @updatedAt
+  notes Note[]
+}
+
+model Note {
+  id       Int  @id @default(autoincrement())
+  author   User @relation(fields: [authorId], references: [id])
+  authorId Int
 }
 
 enum Status {

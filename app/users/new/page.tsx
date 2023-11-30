@@ -14,7 +14,7 @@ const NewUser = () => {
   interface UserForm {
     firstName: string;
     lastName: string;
-    notes: string;
+    info: string;
   }
   const {
     register,
@@ -46,13 +46,13 @@ const NewUser = () => {
         <p>{errors.lastName?.message}</p>
 
         <Controller
-          name="notes"
+          name="info"
           control={control}
           render={({ field }) => (
             <SimpleMdeEditor placeholder="notes..." {...field} />
           )}
         />
-        <p>{errors.notes?.message}</p>
+        <p>{errors.info?.message}</p>
         <Button type="submit">Submit</Button>
       </form>
       <Button className="">

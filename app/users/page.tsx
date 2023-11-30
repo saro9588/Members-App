@@ -8,7 +8,7 @@ interface UserForm {
   id: number;
   firstname: string;
   lastname: string;
-  notes: string;
+  info: string;
   createdAT: string;
 }
 
@@ -38,7 +38,7 @@ const AllUsers = () => {
             <Table.Row>
               <Table.ColumnHeaderCell>Full name</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Sign Up Date</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Notes</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Info</Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -47,7 +47,7 @@ const AllUsers = () => {
               <Table.Row key={user.id}>
                 <Table.RowHeaderCell>{`${user.firstname} ${user.lastname}`}</Table.RowHeaderCell>
                 <Table.Cell>{user.createdAT}</Table.Cell>
-                <Table.Cell>{user.notes}</Table.Cell>
+                <Table.Cell>{user.info}</Table.Cell>
                 <Table.Cell>
                   {
                     <Button>
