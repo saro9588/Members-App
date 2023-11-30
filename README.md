@@ -3,7 +3,10 @@ This is an Application that I am developing for my business. I run a private mus
 This app can serve other types of users as well. You can create a user, store specific info about each user, update the info of each user. 
 
 ## Improvements 
-Set up the user login. 
+1)Set up the user login. 
+2)Improve Prisma Schema Model to store info related to each user after being created, this info is different from the initially set set of notes. 
+3)Improve the landing page UI. 
+
 
 ## Built with
 React. 
