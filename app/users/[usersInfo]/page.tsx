@@ -1,5 +1,5 @@
 "use client";
-import { Table } from "@radix-ui/themes";
+import { TextField, TextFieldInput } from "@radix-ui/themes";
 import Link from "next/link";
 import "easymde/dist/easymde.min.css";
 import { useForm, Controller } from "react-hook-form";
@@ -10,14 +10,22 @@ import dynamic from "next/dynamic";
 const SimpleMdeEditor = dynamic(() => import("react-simplemde-editor"), {
   ssr: false,
 });
-
+interface UserForm {
+  id: number;
+  firstName: string;
+  lastName: string;
+  info: string;
+  notes: Note[];
+}
+interface Note {
+  id: number;
+  author: string;
+  authorId: number;
+  description: string;
+}
 export default function Page({ params }: { params: { slug: string } }) {
   const [users, setUsers] = useState<UserForm[]>([]);
-  interface UserForm {
-    firstName: string;
-    lastName: string;
-    notes: string;
-  }
+
   const {
     register,
     control,
@@ -26,27 +34,20 @@ export default function Page({ params }: { params: { slug: string } }) {
     formState: { errors },
   } = useForm<UserForm>({});
   const onSubmit = handleSubmit(async (data) => {
-    await axios.post("/api/users", data);
+    await axios.post("/api/users/", data);
     reset();
   });
   return (
     <>
       <h1>User detailed notes</h1>
-      <h2>
-        {users.map((user) => (
-          <h1>{user.firstName} Hello</h1>
-        ))}
-      </h2>
 
       <form className="max-w-xl space-y-3 mb-5" onSubmit={onSubmit}>
-        <Controller
-          name="notes"
-          control={control}
-          render={({ field }) => (
-            <SimpleMdeEditor placeholder="notes..." {...field} />
-          )}
+        <TextField.Input
+          {...register("notes", {
+            required: "This is required.",
+          })}
+          placeholder="firstname"
         />
-        <p>{errors.notes?.message}</p>
         <Button type="submit">Save</Button>
       </form>
       <Button className="">

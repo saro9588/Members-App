@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { z } from "zod";
+import { string, z } from "zod";
 import prisma from "@/prisma/client";
 
 const createUserSchema = z.object({
@@ -20,14 +20,17 @@ export async function POST(request: NextRequest) {
       lastname: body.lastName,
       info: body.info,
       createdAT: body.createdAT,
+      notes: {},
     },
   });
-
   return NextResponse.json(newUser, { status: 201 });
 }
 
 export async function GET(request: NextRequest) {
-  const users = await prisma.user.findMany(); // Fetch all users from the database using Prisma
-
+  const users = await prisma.user.findMany({
+    include: {
+      notes: {},
+    },
+  }); // Fetch all users from the database using Prisma
   return NextResponse.json(users, { status: 200 }); // Return users as JSON response with status 200
 }

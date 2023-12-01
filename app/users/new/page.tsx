@@ -15,6 +15,11 @@ const NewUser = () => {
     firstName: string;
     lastName: string;
     info: string;
+    note: Note[];
+  }
+  interface Note {
+    id: number;
+    authorId: number;
   }
   const {
     register,

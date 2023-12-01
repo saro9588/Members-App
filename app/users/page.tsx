@@ -4,17 +4,20 @@ import Link from "next/link";
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 
-interface UserForm {
-  id: number;
-  firstname: string;
-  lastname: string;
-  info: string;
-  createdAT: string;
-}
-
 const AllUsers = () => {
   const [users, setUsers] = useState<UserForm[]>([]); // Specify the type for users as UserForm[]
-
+  interface UserForm {
+    id: number;
+    firstname: string;
+    lastname: string;
+    info: string;
+    createdAT: string;
+    notes: string;
+  }
+  interface Note {
+    id: number;
+    authorId: number;
+  }
   useEffect(() => {
     const fetchUsers = async () => {
       try {
