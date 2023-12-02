@@ -20,7 +20,7 @@ const AllUsers = () => {
       try {
         const response = await axios.get("/api/users");
         setUsers(response.data);
-        console.log(response.data);
+        //console.log(response.data);
       } catch (error) {
         console.error("Error fetching users:", error);
       }
@@ -28,6 +28,7 @@ const AllUsers = () => {
 
     fetchUsers();
   }, []);
+  console.log(users);
 
   return (
     <>
