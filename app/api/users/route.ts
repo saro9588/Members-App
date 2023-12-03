@@ -26,21 +26,6 @@ export async function POST(request: NextRequest) {
   return NextResponse.json(newUser, { status: 201 });
 }
 
-export async function POST_newNote(request: NextRequest) {
-  const body = await request.json();
-  const validation = createUserSchema.safeParse(body);
-  if (!validation.success)
-    return NextResponse.json(validation.error.errors, { status: 400 });
-  const userId = body.userId;
-  const newNote = await prisma.note.create({
-    data: {
-      author: body.author,
-      description: body.description,
-    },
-  });
-  return NextResponse.json(newNote, { status: 201 });
-}
-
 export async function GET(request: NextRequest) {
   const users = await prisma.user.findMany({
     include: {

@@ -1,34 +1,10 @@
-"use client";
+import React from "react";
 import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import prisma from "@/prisma/client";
 
-interface UserForm {
-  id: number;
-  firstname: string;
-  lastname: string;
-  info: string;
-  createdAT: string;
-}
-
-const AllUsers = () => {
-  const [users, setUsers] = useState<UserForm[]>([]); // Specify the type for users as UserForm[]
-
-  useEffect(() => {
-    const fetchUsers = async () => {
-      try {
-        const response = await axios.get("/api/users");
-        setUsers(response.data);
-        //console.log(response.data);
-      } catch (error) {
-        console.error("Error fetching users:", error);
-      }
-    };
-
-    fetchUsers();
-  }, []);
-  console.log(users);
+const AllUsers = async () => {
+  const users = await prisma.user.findMany();
 
   return (
     <>
@@ -46,8 +22,12 @@ const AllUsers = () => {
           <Table.Body>
             {users.map((user) => (
               <Table.Row key={user.id}>
-                <Table.RowHeaderCell>{`${user.firstname} ${user.lastname}`}</Table.RowHeaderCell>
-                <Table.Cell>{user.createdAT}</Table.Cell>
+                <Table.RowHeaderCell>
+                  <Link
+                    href={`/users/${user.id}`}
+                  >{`${user.firstname} ${user.lastname}`}</Link>
+                </Table.RowHeaderCell>
+                <Table.Cell>{user.createdAT.toDateString()}</Table.Cell>
                 <Table.Cell>{user.info}</Table.Cell>
                 <Table.Cell>
                   {
