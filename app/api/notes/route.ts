@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client";
 
-export async function POST(
+export async function newPOST(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
@@ -21,15 +21,4 @@ export async function POST(
     },
   });
   return NextResponse.json(note, { status: 201 });
-}
-
-export async function GET(
-  request: NextRequest,
-  { params }: { params: { id: string } }
-) {
-  const notes = await prisma.note.findUnique({
-    where: { id: parseInt(params.id) },
-  }); // Fetch all users from the database using Prisma
-  console.log(notes);
-  return NextResponse.json(notes, { status: 200 }); // Return users as JSON response with status 200
 }

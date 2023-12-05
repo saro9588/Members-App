@@ -2,10 +2,19 @@
 import { Note } from "@prisma/client";
 import { Button, TextArea } from "@radix-ui/themes";
 import axios from "axios";
-import React from "react";
 import { useForm } from "react-hook-form";
 
-const createUserNote = () => {
+interface Props {
+  params: { id: number };
+}
+
+const createUserNote = ({ params }: Props) => {
+  interface UserNote {
+    id: number;
+    description: string;
+    authorId: number;
+  }
+
   const {
     register,
     control,
@@ -13,21 +22,26 @@ const createUserNote = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<UserNote>({});
+
+  const { id: authorId } = params;
   const onSubmit = handleSubmit(async (data) => {
-    await axios.post(`/users/${user.id}/notes`, data);
+    await axios.post(`/users/${authorId}/notes`, data);
     reset();
   });
-
+  console.log(authorId);
   return (
-    <form onSubmit={onSubmit}>
-      <TextArea
-        {...register("description", {
-          required: "This is required.",
-        })}
-        placeholder="Notes..."
-      />
-      <Button type="submit">Submit</Button>
-    </form>
+    <>
+      <p>Hello World</p>
+      <form onSubmit={onSubmit}>
+        <TextArea
+          {...register("description", {
+            required: "This is required.",
+          })}
+          placeholder="Notes..."
+        />
+        <Button type="submit">Submit</Button>
+      </form>
+    </>
   );
 };
 

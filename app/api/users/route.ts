@@ -22,8 +22,33 @@ export async function POST(request: NextRequest) {
       createdAT: body.createdAT,
       notes: body.notes,
     },
+    include: {
+      notes: true,
+    },
   });
   return NextResponse.json(newUser, { status: 201 });
+}
+
+export async function newPOST(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const body = await request.json();
+  const user = await prisma.user.findUnique({
+    where: { id: parseInt(params.id) },
+  });
+
+  if (!user) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
+
+  const note = await prisma.note.create({
+    data: {
+      description: body.description,
+      authorId: user.id,
+    },
+  });
+  return NextResponse.json(note, { status: 201 });
 }
 
 export async function GET(request: NextRequest) {
@@ -31,7 +56,7 @@ export async function GET(request: NextRequest) {
     include: {
       notes: true,
     },
-  }); // Fetch all users from the database using Prisma
+  });
 
-  return NextResponse.json(users, { status: 200 }); // Return users as JSON response with status 200
+  return NextResponse.json(users, { status: 200 });
 }
