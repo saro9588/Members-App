@@ -6,18 +6,30 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   const body = await request.json();
-
-  const note = await prisma.note.findUnique({
+  const user = await prisma.user.findUnique({
     where: { id: parseInt(params.id) },
   });
-  if (!note)
-    return NextResponse.json({ error: "Invalid Note" }, { status: 404 });
 
-  const userNotes = await prisma.note.create({
+  if (!user) {
+    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  }
+
+  const note = await prisma.note.create({
     data: {
-      description: note.description,
-      authorId: note.authorId,
+      description: body.description,
+      authorId: user.id,
     },
   });
-  return NextResponse.json(userNotes);
+  return NextResponse.json(note, { status: 201 });
+}
+
+export async function GET(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const notes = await prisma.note.findUnique({
+    where: { id: parseInt(params.id) },
+  }); // Fetch all users from the database using Prisma
+  console.log(notes);
+  return NextResponse.json(notes, { status: 200 }); // Return users as JSON response with status 200
 }

@@ -27,7 +27,7 @@ const NewUser = () => {
     await axios.post("/api/users", data);
     reset();
   });
-  // firstName and lastName will have correct type
+
   return (
     <>
       <div>Create a New User</div>

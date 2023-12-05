@@ -2,9 +2,14 @@ import React from "react";
 import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
 import prisma from "@/prisma/client";
+import { number } from "zod";
 
 const AllUsers = async () => {
-  const users = await prisma.user.findMany();
+  const users = await prisma.user.findMany({
+    include: {
+      notes: true,
+    },
+  });
 
   return (
     <>
@@ -30,11 +35,19 @@ const AllUsers = async () => {
                 <Table.Cell>{user.createdAT.toDateString()}</Table.Cell>
                 <Table.Cell>{user.info}</Table.Cell>
                 <Table.Cell>
-                  {
+                  {user.notes.length > 0 ? (
+                    user.notes.map((note) => (
+                      <div key={note.id}>
+                        <Button>
+                          <Link href={`/users/${note.authorId}`}>More</Link>
+                        </Button>
+                      </div>
+                    ))
+                  ) : (
                     <Button>
-                      <Link href={`/users/${user.id}`}>More</Link>
+                      <Link href={`/users/${user.id}/notes`}>Take Notes</Link>
                     </Button>
-                  }
+                  )}
                 </Table.Cell>
               </Table.Row>
             ))}
