@@ -24,7 +24,7 @@ const NewUser = () => {
     formState: { errors },
   } = useForm<UserForm>({});
   const onSubmit = handleSubmit(async (data) => {
-    await axios.post("/api/users", data);
+    await axios.post("/api/users/", data);
     reset();
   });
 
