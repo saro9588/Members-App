@@ -23,12 +23,12 @@ const createUserNote = ({ params }: Props) => {
     formState: { errors },
   } = useForm<UserNote>({});
 
-  const { id: authorId } = params;
+  const { id } = params;
   const onSubmit = handleSubmit(async (data) => {
-    await axios.post(`/users/${authorId}/notes`, data);
+    await axios.post(`/api/users/${id}/`, data);
     reset();
   });
-  console.log(authorId);
+  console.log(id);
   return (
     <>
       <p>Hello World</p>
