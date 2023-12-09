@@ -5,10 +5,8 @@ import { useForm } from "react-hook-form";
 import { Button, TextField, TextArea } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { useState, useEffect } from "react";
 
 const NewUser = () => {
-  const [data, setData] = useState(null);
   const router = useRouter();
 
   interface UserForm {
