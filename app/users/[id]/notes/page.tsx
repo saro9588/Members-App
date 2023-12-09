@@ -31,6 +31,15 @@ const createUserNote = ({ params }: Props) => {
   const onSubmit = handleSubmit(async (data) => {
     await axios.post(`/api/users/${id}/`, data);
     reset();
+    // const res = await fetch("/api/users");
+    // const notes = await res.json();
+    // console.log(notes);
+    // const newestNote = notes.slice(-1)[0];
+    // if (newestNote && newestNote.id) {
+    //   router.push(`/users/${newestNote.id}/notes`);
+    // } else {
+    //   console.error("Latest user data or ID not found in response");
+    // }
   });
   console.log(id);
   return (
