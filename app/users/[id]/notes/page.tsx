@@ -1,14 +1,19 @@
 "use client";
-import { Note } from "@prisma/client";
-import { Button, TextArea } from "@radix-ui/themes";
+import { Button } from "@radix-ui/themes";
 import axios from "axios";
-import { useForm } from "react-hook-form";
+import { useForm, Controller } from "react-hook-form";
+import dynamic from "next/dynamic";
+const SimpleMdeEditor = dynamic(() => import("react-simplemde-editor"), {
+  ssr: false,
+});
+import { useRouter } from "next/navigation";
 
 interface Props {
   params: { id: number };
 }
 
 const createUserNote = ({ params }: Props) => {
+  const router = useRouter();
   interface UserNote {
     id: number;
     description: string;
@@ -16,7 +21,6 @@ const createUserNote = ({ params }: Props) => {
   }
 
   const {
-    register,
     control,
     reset,
     handleSubmit,
@@ -31,13 +35,14 @@ const createUserNote = ({ params }: Props) => {
   console.log(id);
   return (
     <>
-      <p>Hello World</p>
-      <form onSubmit={onSubmit}>
-        <TextArea
-          {...register("description", {
-            required: "This is required.",
-          })}
-          placeholder="Notes..."
+      <p>Student Details</p>
+      <form className="max-w-xl" onSubmit={onSubmit}>
+        <Controller
+          name="description"
+          control={control}
+          render={({ field }) => (
+            <SimpleMdeEditor placeholder="notes..." {...field} />
+          )}
         />
         <Button type="submit">Submit</Button>
       </form>

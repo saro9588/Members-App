@@ -27,9 +27,7 @@ const AllUsers = async () => {
             {users.map((user) => (
               <Table.Row key={user.id}>
                 <Table.RowHeaderCell>
-                  <Link
-                    href={`/users/${user.id}`}
-                  >{`${user.firstname} ${user.lastname}`}</Link>
+                  {`${user.firstname} ${user.lastname}`}
                 </Table.RowHeaderCell>
                 <Table.Cell>{user.createdAT.toDateString()}</Table.Cell>
                 <Table.Cell>{user.info}</Table.Cell>
@@ -38,7 +36,7 @@ const AllUsers = async () => {
                     user.notes.map((note) => (
                       <div key={note.id}>
                         <Button>
-                          <Link href={`/users/${note.authorId}`}>More</Link>
+                          <Link href={`/users/${note.id}`}>More</Link>
                         </Button>
                       </div>
                     ))
