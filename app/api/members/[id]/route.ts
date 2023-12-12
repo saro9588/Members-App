@@ -6,17 +6,17 @@ export async function POST(
   { params }: { params: { id: string } }
 ) {
   const body = await request.json();
-  const user = await prisma.user.findUnique({
+  const member = await prisma.member.findUnique({
     where: { id: parseInt(params.id) },
   });
 
-  if (!user) {
-    return NextResponse.json({ error: "User not found" }, { status: 404 });
+  if (!member) {
+    return NextResponse.json({ error: "Member not found" }, { status: 404 });
   }
 
   const note = await prisma.note.create({
     data: {
-      authorId: user.id,
+      authorId: member.id,
       description: body.description,
     },
   });

@@ -6,10 +6,10 @@ import { Button, TextField, TextArea } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const NewUser = () => {
+const NewMember = () => {
   const router = useRouter();
 
-  interface UserForm {
+  interface MemberForm {
     id: number;
     firstName: string;
     lastName: string;
@@ -21,17 +21,17 @@ const NewUser = () => {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserForm>({});
+  } = useForm<MemberForm>({});
   const onSubmit = handleSubmit(async (data) => {
-    await axios.post("/api/users/", data);
-    const res = await fetch("/api/users");
-    const users = await res.json();
-    console.log(users);
-    const newestUser = users.slice(-1)[0];
-    if (newestUser && newestUser.id) {
-      router.push(`/users/${newestUser.id}/notes`);
+    await axios.post("/api/members/", data);
+    const res = await fetch("/api/members");
+    const members = await res.json();
+    console.log(members);
+    const newestMember = members.slice(-1)[0];
+    if (newestMember && newestMember.id) {
+      router.push(`/members/${newestMember.id}/notes`);
     } else {
-      console.error("Latest user data or ID not found in response");
+      console.error("Latest member data or ID not found in response");
     }
   });
 
@@ -60,13 +60,13 @@ const NewUser = () => {
           placeholder="Notes..."
         />
         <p>{errors.info?.message}</p>
-        <Button type="submit">Create User</Button>
+        <Button type="submit">Add Member</Button>
       </form>
       <Button className="">
-        <Link href="/users">All Users</Link>
+        <Link href="/members">All Members</Link>
       </Button>
     </>
   );
 };
 
-export default NewUser;
+export default NewMember;

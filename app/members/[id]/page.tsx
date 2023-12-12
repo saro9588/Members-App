@@ -17,7 +17,7 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
-      <h1>User detailed notes</h1>
+      <h1>Member detailed notes</h1>
       <div>
         <p>{note.authorId}</p>
         <p>{note.description}</p>

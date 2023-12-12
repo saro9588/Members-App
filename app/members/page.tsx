@@ -3,8 +3,8 @@ import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
 import prisma from "@/prisma/client";
 
-const AllUsers = async () => {
-  const users = await prisma.user.findMany({
+const Members = async () => {
+  const members = await prisma.member.findMany({
     include: {
       notes: true,
     },
@@ -13,7 +13,7 @@ const AllUsers = async () => {
   return (
     <>
       <div>
-        <h1>User List</h1>
+        <h1>Members List</h1>
         <Table.Root>
           <Table.Header>
             <Table.Row>
@@ -24,25 +24,27 @@ const AllUsers = async () => {
           </Table.Header>
 
           <Table.Body>
-            {users.map((user) => (
-              <Table.Row key={user.id}>
+            {members.map((member) => (
+              <Table.Row key={member.id}>
                 <Table.RowHeaderCell>
-                  {`${user.firstname} ${user.lastname}`}
+                  {`${member.firstname} ${member.lastname}`}
                 </Table.RowHeaderCell>
-                <Table.Cell>{user.createdAT.toDateString()}</Table.Cell>
-                <Table.Cell>{user.info}</Table.Cell>
+                <Table.Cell>{member.createdAT.toDateString()}</Table.Cell>
+                <Table.Cell>{member.info}</Table.Cell>
                 <Table.Cell>
-                  {user.notes.length > 0 ? (
-                    user.notes.map((note) => (
+                  {member.notes.length > 0 ? (
+                    member.notes.map((note) => (
                       <div key={note.id}>
                         <Button>
-                          <Link href={`/users/${note.id}`}>More</Link>
+                          <Link href={`/members/${note.id}`}>More</Link>
                         </Button>
                       </div>
                     ))
                   ) : (
                     <Button>
-                      <Link href={`/users/${user.id}/notes`}>Take Notes</Link>
+                      <Link href={`/members/${member.id}/notes`}>
+                        Take Notes
+                      </Link>
                     </Button>
                   )}
                 </Table.Cell>
@@ -59,4 +61,4 @@ const AllUsers = async () => {
   );
 };
 
-export default AllUsers;
+export default Members;

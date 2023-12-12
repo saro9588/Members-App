@@ -14,7 +14,7 @@ export async function POST(request: NextRequest) {
   if (!validation.success)
     return NextResponse.json(validation.error.errors, { status: 400 });
 
-  const newUser = await prisma.user.create({
+  const newMember = await prisma.member.create({
     data: {
       firstname: body.firstName,
       lastname: body.lastName,
@@ -26,15 +26,15 @@ export async function POST(request: NextRequest) {
       notes: true,
     },
   });
-  return NextResponse.json(newUser, { status: 201 });
+  return NextResponse.json(newMember, { status: 201 });
 }
 
 export async function GET(request: NextRequest) {
-  const users = await prisma.user.findMany({
+  const members = await prisma.member.findMany({
     include: {
       notes: true,
     },
   });
 
-  return NextResponse.json(users, { status: 200 });
+  return NextResponse.json(members, { status: 200 });
 }

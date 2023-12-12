@@ -12,9 +12,9 @@ interface Props {
   params: { id: number };
 }
 
-const createUserNote = ({ params }: Props) => {
+const createMemberNote = ({ params }: Props) => {
   const router = useRouter();
-  interface UserNote {
+  interface MemberNote {
     id: number;
     description: string;
     authorId: number;
@@ -25,23 +25,23 @@ const createUserNote = ({ params }: Props) => {
     reset,
     handleSubmit,
     formState: { errors },
-  } = useForm<UserNote>({});
+  } = useForm<MemberNote>({});
 
   const { id } = params;
   const onSubmit = handleSubmit(async (data) => {
-    await axios.post(`/api/users/${id}/`, data);
+    await axios.post(`/api/members/${id}/`, data);
     reset();
-    const res = await fetch("/api/users");
-    const users = await res.json();
-    console.log(users);
-    const newestUser = users.slice(-1)[0];
-    const newestNote = newestUser?.notes?.[0];
+    const res = await fetch("/api/members");
+    const members = await res.json();
+    console.log(members);
+    const newestMember = members.slice(-1)[0];
+    const newestNote = newestMember?.notes?.[0];
     console.log(newestNote);
     const newestNoteId = newestNote.id;
     if (newestNote && newestNoteId) {
-      router.push(`/users/${newestNoteId}/`);
+      router.push(`/members/${newestNoteId}/`);
     } else {
-      console.error("Latest user note or ID not found in response");
+      console.error("Latest member note or ID not found in response");
     }
   });
 
@@ -62,4 +62,4 @@ const createUserNote = ({ params }: Props) => {
   );
 };
 
-export default createUserNote;
+export default createMemberNote;
