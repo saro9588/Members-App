@@ -1,10 +1,10 @@
-import React from "react";
 import prisma from "@/prisma/client";
-import { notFound } from "next/navigation";
-import Link from "next/link";
+import { Box, Button, Grid } from "@radix-ui/themes";
 import "easymde/dist/easymde.min.css";
-import { Button, Card } from "@radix-ui/themes";
-import ReactMarkdown from "react-markdown";
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import EditNoteButton from "./EditNoteButton";
+import NoteDetails from "./NoteDetails";
 
 interface Props {
   params: { id: string };
@@ -19,14 +19,14 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <h1>Member detailed notes</h1>
-      <div>
-        <Card className="prose max-w-full" mt="4">
-          <ReactMarkdown>{note.description}</ReactMarkdown>
-        </Card>
-        {/* <p>{note.authorId}</p>
-        <p>{note.description}</p>
-        <p>{note.id}</p> */}
-      </div>
+      <Grid columns={{ initial: "1", md: "2" }} gap="5">
+        <Box>
+          <NoteDetails note={note} />
+        </Box>
+        <Box>
+          <EditNoteButton noteId={note.id} />
+        </Box>
+      </Grid>
       <Button className="">
         <Link href="/members">All Members</Link>
       </Button>
