@@ -1,13 +1,13 @@
 import { Member } from "@prisma/client";
-import NewUserForm from "./NewMemberForm";
+import NewMemberForm from "./NewMemberForm";
 
-const NewUserPage = ({ member }: { member: Member }) => {
+const NewMemberPage = ({ member }: { member: Member }) => {
   return (
     <>
       {" "}
-      <NewUserForm />
+      <NewMemberForm />
     </>
   );
 };
 
-export default NewUserPage;
+export default NewMemberPage;

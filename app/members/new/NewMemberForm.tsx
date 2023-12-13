@@ -6,7 +6,7 @@ import { Button, TextField, TextArea } from "@radix-ui/themes";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const NewMember = () => {
+const NewMemberForm = () => {
   const router = useRouter();
 
   interface MemberForm {
@@ -38,7 +38,7 @@ const NewMember = () => {
   console.log();
   return (
     <>
-      <div>Create a New User</div>
+      <div>Create a New Member</div>
       <form className="max-w-xl space-y-3 mb-5" onSubmit={onSubmit}>
         <TextField.Input
           {...register("firstName", {
@@ -69,4 +69,4 @@ const NewMember = () => {
   );
 };
 
-export default NewMember;
+export default NewMemberForm;
