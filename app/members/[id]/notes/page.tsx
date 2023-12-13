@@ -12,7 +12,7 @@ interface Props {
   params: { id: number };
 }
 
-const memberNoteForm = ({ params }: Props) => {
+const MemberNoteForm = ({ params }: Props) => {
   const router = useRouter();
   interface MemberNote {
     id: number;
@@ -54,4 +54,4 @@ const memberNoteForm = ({ params }: Props) => {
   );
 };
 
-export default memberNoteForm;
+export default MemberNoteForm;
