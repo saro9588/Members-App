@@ -17,21 +17,15 @@ const NewMemberForm = () => {
   }
   const {
     register,
-    control,
-    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<MemberForm>({});
   const onSubmit = handleSubmit(async (data) => {
-    await axios.post("/api/members/", data);
-    const res = await fetch("/api/members");
-    const members = await res.json();
-    console.log(members);
-    const newestMember = members.slice(-1)[0];
-    if (newestMember && newestMember.id) {
-      router.push(`/members/${newestMember.id}/notes`);
-    } else {
-      console.error("Latest member data or ID not found in response");
+    try {
+      const { data: newMember } = await axios.post("/api/members/", data);
+      router.push(`/members/${newMember.id}/notes`);
+    } catch (error) {
+      console.error(error);
     }
   });
 

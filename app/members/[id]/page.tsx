@@ -19,7 +19,7 @@ export default async function Page({ params }: Props) {
   return (
     <>
       <h1>Member detailed notes</h1>
-      <Grid columns={{ initial: "1", md: "2" }} gap="5">
+      <Grid columns={{ initial: "1", md: "2" }} gap="5" mb="5">
         <Box>
           <NoteDetails note={note} />
         </Box>

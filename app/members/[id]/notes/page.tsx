@@ -12,7 +12,7 @@ interface Props {
   params: { id: number };
 }
 
-const createMemberNote = ({ params }: Props) => {
+const memberNoteForm = ({ params }: Props) => {
   const router = useRouter();
   interface MemberNote {
     id: number;
@@ -29,19 +29,11 @@ const createMemberNote = ({ params }: Props) => {
 
   const { id } = params;
   const onSubmit = handleSubmit(async (data) => {
-    await axios.post(`/api/members/${id}/`, data);
-    reset();
-    const res = await fetch("/api/members");
-    const members = await res.json();
-    console.log(members);
-    const newestMember = members.slice(-1)[0];
-    const newestNote = newestMember?.notes?.[0];
-    console.log(newestNote);
-    const newestNoteId = newestNote.id;
-    if (newestNote && newestNoteId) {
-      router.push(`/members/${newestNoteId}/`);
-    } else {
-      console.error("Latest member note or ID not found in response");
+    try {
+      const { data: newNote } = await axios.post(`/api/members/${id}/`, data);
+      router.push(`/members/${newNote.id}/`);
+    } catch (error) {
+      console.error(error);
     }
   });
 
@@ -62,4 +54,4 @@ const createMemberNote = ({ params }: Props) => {
   );
 };
 
-export default createMemberNote;
+export default memberNoteForm;

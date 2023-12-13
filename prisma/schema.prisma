@@ -19,6 +19,7 @@ model Member {
   createdAT DateTime @default(now())
   updatedAT DateTime @updatedAt
   notes Note[]
+  // one user can create many members
 }
 
 model Note {
@@ -69,6 +70,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  //member Member []
 }
 
 model VerificationToken {
