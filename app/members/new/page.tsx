@@ -1,7 +1,6 @@
-import { Member } from "@prisma/client";
 import NewMemberForm from "./NewMemberForm";
 
-const NewMemberPage = ({ member }: { member: Member }) => {
+const NewMemberPage = () => {
   return (
     <>
       {" "}
