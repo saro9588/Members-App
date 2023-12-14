@@ -3,7 +3,6 @@ import NewMemberForm from "./NewMemberForm";
 const NewMemberPage = () => {
   return (
     <>
-      {" "}
       <NewMemberForm />
     </>
   );
