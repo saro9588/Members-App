@@ -33,7 +33,7 @@ const NewMemberForm = () => {
   return (
     <>
       <div>Create a New Member</div>
-      <form className="max-w-xl space-y-3 mb-5" onSubmit={onSubmit}>
+      <form className="max-w-xl space-y-3 mb-5">
         <TextField.Input
           {...register("firstName", {
             required: "This is required.",
@@ -54,8 +54,10 @@ const NewMemberForm = () => {
           placeholder="Notes..."
         />
         <p>{errors.info?.message}</p>
-        <Button type="submit">Add Member</Button>
       </form>
+      <Button type="submit" onClick={onSubmit}>
+        Add Member
+      </Button>
       <Button className="">
         <Link href="/members">All Members</Link>
       </Button>
