@@ -53,6 +53,7 @@ const MemberNoteForm = ({ params }: Props) => {
           Submit
         </Button>
       </form>
+      <Button>Test</Button>
     </>
   );
 };
