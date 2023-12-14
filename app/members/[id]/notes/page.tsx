@@ -1,5 +1,6 @@
 "use client";
 import { Button } from "@radix-ui/themes";
+import "easymde/dist/easymde.min.css";
 import axios from "axios";
 import { useForm, Controller } from "react-hook-form";
 import dynamic from "next/dynamic";
