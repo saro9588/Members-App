@@ -48,7 +48,9 @@ const MemberNoteForm = ({ params }: Props) => {
             <SimpleMdeEditor placeholder="notes..." {...field} />
           )}
         />
-        <Button type="submit">Submit</Button>
+        <Button className="" type="submit">
+          Submit
+        </Button>
       </form>
     </>
   );
