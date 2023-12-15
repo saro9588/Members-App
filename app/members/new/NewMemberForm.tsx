@@ -50,7 +50,7 @@ const NewMemberForm = () => {
           placeholder="Notes..."
         />
         <p>{errors.info?.message}</p>
-        <Button className="" type="submit" onClick={onSubmit}>
+        <Button color="indigo" variant="soft" onClick={onSubmit}>
           Add Member
         </Button>
       </form>
