@@ -51,5 +51,6 @@ const CreateNoteForm = ({ id }: { id: number }) => {
     </form>
   );
 };
-
+export const revalidate = 0;
+export const dynamiC = "force-dynamic";
 export default CreateNoteForm;
