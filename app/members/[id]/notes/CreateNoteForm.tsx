@@ -26,7 +26,11 @@ const CreateNoteForm = ({ id }: { id: number }) => {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      const { data: newNote } = await axios.post(`/api/members/${id}/`, data);
+      const { data: newNote } = await axios.post(`/api/members/${id}/`, data, {
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      });
       router.push(`/members/${newNote.id}/`);
     } catch (error) {
       console.error(error);
