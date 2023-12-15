@@ -22,6 +22,7 @@ const NewMemberForm = () => {
     try {
       const { data: newMember } = await axios.post("/api/members/", data);
       router.push(`/members/${newMember.id}/notes`);
+      router.refresh();
     } catch (error) {
       console.error(error);
     }
