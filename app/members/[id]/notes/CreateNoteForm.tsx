@@ -1,13 +1,9 @@
 "use client";
-import { Button } from "@radix-ui/themes";
+import { Button, TextArea } from "@radix-ui/themes";
 import React from "react";
-import { Controller, useForm } from "react-hook-form";
-import dynamic from "next/dynamic";
+import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-const SimpleMdeEditor = dynamic(() => import("react-simplemde-editor"), {
-  ssr: false,
-});
 
 const CreateNoteForm = ({ id }: { id: number }) => {
   const router = useRouter();
@@ -19,6 +15,7 @@ const CreateNoteForm = ({ id }: { id: number }) => {
   }
 
   const {
+    register,
     control,
     handleSubmit,
     formState: { errors },
@@ -32,18 +29,16 @@ const CreateNoteForm = ({ id }: { id: number }) => {
         },
       });
       router.push(`/members/${newNote.id}/`);
+      console.log(newNote.id);
     } catch (error) {
       console.error(error);
     }
   });
   return (
     <form className="max-w-xl" onSubmit={onSubmit}>
-      <Controller
-        name="description"
-        control={control}
-        render={({ field }) => (
-          <SimpleMdeEditor placeholder="notes..." {...field} />
-        )}
+      <TextArea
+        {...register("description", { required: "This is required." })}
+        placeholder="Take notes..."
       />
       <Button className="" type="submit">
         Submit
@@ -52,5 +47,5 @@ const CreateNoteForm = ({ id }: { id: number }) => {
   );
 };
 export const revalidate = 0;
-export const dynamiC = "force-dynamic";
+export const dynamic = "force-dynamic";
 export default CreateNoteForm;
