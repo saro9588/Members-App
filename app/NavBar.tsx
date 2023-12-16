@@ -36,6 +36,8 @@ const NavLinks = () => {
   const currentPath = usePathname();
 
   const links = [
+    { label: "Create Account", href: "/register" },
+    { label: "Log In", href: "/login" },
     { label: "Dashboard", href: "/" },
     { label: "New Member", href: "/members/new" },
     { label: "Members", href: "/members" },
