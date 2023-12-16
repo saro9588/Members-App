@@ -2,7 +2,7 @@ import { hash } from "bcrypt";
 import { sql } from "@vercel/postgres";
 import { NextResponse } from "next/server";
 
-export async function GET(request: Request) {
+export async function POST(request: Request) {
   const { searchParams } = new URL(request.url);
   const userEmail = searchParams.get("userEmail");
   const userPassword = searchParams.get("userPassword");
@@ -10,7 +10,9 @@ export async function GET(request: Request) {
   try {
     if (!userEmail || !userPassword)
       throw new Error("Pet and owner names required");
-    await sql`INSERT INTO Users (email, password) VALUES (${userEmail}, ${userPassword});`;
+    const hashedPassword = await hash(userPassword, 10);
+
+    await sql`INSERT INTO Users (email, password) VALUES (${userEmail}, ${hashedPassword});`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
