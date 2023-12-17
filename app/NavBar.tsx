@@ -37,8 +37,14 @@ const NavLinks = () => {
     { label: "Members", href: "/members", authRequired: true },
   ];
   const filteredLinks = links.filter(
-    (link) => !link.authRequired || status === "authenticated"
+    (link) =>
+      !(
+        (link.label === "Create Account" || link.label === "Log In") &&
+        status === "authenticated"
+      ) &&
+      (!link.authRequired || status === "authenticated")
   );
+
   return (
     <ul className="flex space-x-6 ">
       {filteredLinks.map((link) => (
@@ -59,7 +65,7 @@ const NavLinks = () => {
 };
 
 const AuthStatus = () => {
-  const { status, data: session } = useSession();
+  const { status } = useSession();
 
   return (
     <Box>

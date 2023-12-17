@@ -45,7 +45,7 @@ export default function Form() {
           placeholder="enter password…"
         />
         <Button color="indigo" variant="soft" type="submit">
-          Submit
+          Login
         </Button>
       </Flex>
     </form>

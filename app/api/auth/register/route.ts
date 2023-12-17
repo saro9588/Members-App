@@ -25,14 +25,3 @@ export async function POST(request: Request) {
     );
   }
 }
-
-//     if (!email || !password) throw new Error("User and email are required");
-
-//     await sql`INSERT INTO Users (email, password) VALUES (${email}, ${hashedPassword});`;
-//   } catch (error) {
-//     return NextResponse.json({ error }, { status: 500 });
-//   }
-
-//   const users = await sql`SELECT * FROM Users;`;
-//   return NextResponse.json({ users }, { status: 200 });
-// }
