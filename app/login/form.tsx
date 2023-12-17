@@ -3,6 +3,7 @@
 import { FormEvent } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { Flex, TextField, Button } from "@radix-ui/themes";
 
 export default function Form() {
   const router = useRouter();
@@ -27,12 +28,24 @@ export default function Form() {
       onSubmit={handleSubmit}
       className="flex flex-col gap-2 mx-auto max-w-md"
     >
-      <h1 className="text-xl">Login to an existing Account</h1>
-      <label>Email</label>
-      <input name="email" className="border border-black" type="email" />
-      <label>Password</label>
-      <input name="password" className="border border-black" type="password" />
-      <button type="submit">Submit</button>
+      <h1 className="text-xl">Login to an existing account</h1>
+      <Flex direction="column" gap="3" style={{ maxWidth: 400 }}>
+        <label>Email</label>
+        <TextField.Input
+          name="email"
+          type="email"
+          radius="full"
+          placeholder="enter email..."
+        />
+        <label>Password</label>
+        <TextField.Input
+          name="password"
+          type="password"
+          radius="full"
+          placeholder="enter password…"
+        />
+        <Button type="submit">Submit</Button>
+      </Flex>
     </form>
   );
 }

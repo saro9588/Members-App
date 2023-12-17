@@ -2,6 +2,7 @@
 
 import { FormEvent } from "react";
 import { useRouter } from "next/navigation";
+import { Button, Flex, TextField } from "@radix-ui/themes";
 
 export default function Form() {
   const router = useRouter();
@@ -28,15 +29,23 @@ export default function Form() {
         className="flex flex-col gap-2 mx-auto max-w-md"
       >
         <h1 className="text-xl">Register an Account</h1>
-        <label>email</label>
-        <input name="email" className="border border-black" type="email" />
-        <label>password</label>
-        <input
-          name="password"
-          className="border border-black"
-          type="password"
-        />
-        <button type="submit">Submit</button>
+        <Flex direction="column" gap="3" style={{ maxWidth: 400 }}>
+          <label>Email</label>
+          <TextField.Input
+            name="email"
+            type="email"
+            radius="full"
+            placeholder="enter email..."
+          />
+          <label>Password</label>
+          <TextField.Input
+            name="password"
+            type="password"
+            radius="full"
+            placeholder="enter password…"
+          />
+          <Button type="submit">Submit</Button>
+        </Flex>
       </form>
     </>
   );
