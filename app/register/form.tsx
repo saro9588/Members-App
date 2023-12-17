@@ -6,7 +6,7 @@ import { Button, Flex, TextField } from "@radix-ui/themes";
 
 export default function Form() {
   const router = useRouter();
-  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
     const response = await fetch("api/auth/register", {
@@ -18,8 +18,7 @@ export default function Form() {
     });
 
     if (!response?.ok) {
-      router.push("/");
-      router.refresh();
+      router.push("/login");
     }
   };
   return (
@@ -28,7 +27,7 @@ export default function Form() {
         onSubmit={handleSubmit}
         className="flex flex-col gap-2 mx-auto max-w-md"
       >
-        <h1 className="text-xl">Register an Account</h1>
+        <h1 className="text-xl">Create an Account</h1>
         <Flex direction="column" gap="3" style={{ maxWidth: 400 }}>
           <label>Email</label>
           <TextField.Input

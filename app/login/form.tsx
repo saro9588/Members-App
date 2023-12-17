@@ -28,7 +28,7 @@ export default function Form() {
       onSubmit={handleSubmit}
       className="flex flex-col gap-2 mx-auto max-w-md"
     >
-      <h1 className="text-xl">Login to an existing account</h1>
+      <h1 className="text-xl">Login to your Account</h1>
       <Flex direction="column" gap="3" style={{ maxWidth: 400 }}>
         <label>Email</label>
         <TextField.Input
