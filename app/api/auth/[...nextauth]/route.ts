@@ -1,12 +1,12 @@
 //import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prisma from "@/prisma/client";
-import { NextAuthOptions } from "next-auth";
+import NextAuth, { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { compare } from "bcrypt";
 import { sql } from "@vercel/postgres";
 
-const authOptions: NextAuthOptions = {
+const handler = NextAuth({
   adapter: PrismaAdapter(prisma),
   providers: [
     // GoogleProvider({
@@ -44,6 +44,6 @@ const authOptions: NextAuthOptions = {
   pages: {
     signIn: "/login",
   },
-};
+});
 
-export default authOptions;
+export { handler as GET, handler as POST };
