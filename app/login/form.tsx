@@ -44,7 +44,9 @@ export default function Form() {
           radius="full"
           placeholder="enter password…"
         />
-        <Button type="submit">Submit</Button>
+        <Button color="indigo" variant="soft" type="submit">
+          Submit
+        </Button>
       </Flex>
     </form>
   );
