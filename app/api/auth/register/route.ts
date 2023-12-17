@@ -4,15 +4,14 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const { searchParams } = new URL(request.url);
-  const userEmail = searchParams.get("userEmail");
-  const userPassword = searchParams.get("userPassword");
+  const email = searchParams.get("email");
+  const password = searchParams.get("password");
 
   try {
-    if (!userEmail || !userPassword)
-      throw new Error("User and email are required");
-    const hashedPassword = await hash(userPassword, 10);
+    if (!email || !password) throw new Error("User and email are required");
+    const hashedPassword = await hash(password, 10);
 
-    await sql`INSERT INTO Users (email, password) VALUES (${userEmail}, ${hashedPassword});`;
+    await sql`INSERT INTO Users (email, password) VALUES (${email}, ${hashedPassword});`;
   } catch (error) {
     return NextResponse.json({ error }, { status: 500 });
   }
