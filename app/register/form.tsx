@@ -17,7 +17,7 @@ export default function Form() {
       }),
     });
 
-    if (!response?.ok) {
+    if (response?.ok) {
       router.push("/login");
     }
   };
