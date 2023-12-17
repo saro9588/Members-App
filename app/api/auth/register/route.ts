@@ -9,7 +9,7 @@ export async function POST(request: Request) {
 
   try {
     if (!userEmail || !userPassword)
-      throw new Error("Pet and owner names required");
+      throw new Error("User and email are required");
     const hashedPassword = await hash(userPassword, 10);
 
     await sql`INSERT INTO Users (email, password) VALUES (${userEmail}, ${hashedPassword});`;

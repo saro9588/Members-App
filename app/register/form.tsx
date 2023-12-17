@@ -11,8 +11,8 @@ export default function Form() {
     const response = await fetch("api/auth/register", {
       method: "POST",
       body: JSON.stringify({
-        email: formData.get("email"),
-        password: formData.get("password"),
+        userEmail: formData.get("userEmail"),
+        userPassword: formData.get("userPassword"),
       }),
     });
 
@@ -28,11 +28,11 @@ export default function Form() {
         className="flex flex-col gap-2 mx-auto max-w-md"
       >
         <h1 className="text-xl">Register an Account</h1>
-        <label>Email</label>
-        <input name="email" className="border border-black" type="email" />
-        <label>Password</label>
+        <label>userEmail</label>
+        <input name="userEmail" className="border border-black" type="email" />
+        <label>userPassword</label>
         <input
-          name="password"
+          name="userPassword"
           className="border border-black"
           type="password"
         />
