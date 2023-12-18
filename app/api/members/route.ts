@@ -26,6 +26,8 @@ export async function POST(request: NextRequest) {
       info: body.info,
       createdAT: body.createdAT,
       notes: body.notes,
+      user: body.user,
+      userId: body.userId,
     },
     include: {
       notes: true,
