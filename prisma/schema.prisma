@@ -20,10 +20,7 @@ model Member {
   createdAT DateTime @default(now())
   updatedAT DateTime @updatedAt
   notes     Note[]
-  userId    String   @db.VarChar(255)
-  user      User     @relation(fields: [userId], references: [id]) // one user can create many members
-
-  @@index([userId])
+  createdBy String   @db.Text
 }
 
 model Note {
@@ -79,8 +76,11 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
-  members       Member[]
+
+  @@index([id])
 }
+
+// delete User and Session models. 
 
 model VerificationToken {
   identifier String

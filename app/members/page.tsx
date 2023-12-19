@@ -2,11 +2,17 @@ import React from "react";
 import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
 import prisma from "@/prisma/client";
+import { getServerSession } from "next-auth";
+import authOptions from "../auth/authOptions";
 
 const Members = async () => {
+  const session = await getServerSession(authOptions);
   const members = await prisma.member.findMany({
     include: {
       notes: true,
+    },
+    where: {
+      createdBy: session?.user?.email || "",
     },
   });
 
