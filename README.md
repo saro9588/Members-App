@@ -3,7 +3,8 @@ This is an Application that I am developing for my business. I run a private mus
 This app can serve other types of users as well. You can create a user, store specific info about each user, update the info of each user. 
 
 ## Improvements 
-Create User -> Member relationship, where each user of the app has their own list of members and one user can't access, or update, another user's member list. 
+1) UI error handling upon logging in with an invalid user/password. 
+2) Add user authorization: secure API endpoints.
 
 ## Built with
 React. 
