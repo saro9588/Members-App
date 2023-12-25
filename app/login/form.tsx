@@ -44,7 +44,7 @@ export default function Form() {
           radius="full"
           placeholder="enter password…"
         />
-        <div className="flex justify-center">
+        <div className="flex justify-center hover:cursor-pointer">
           <Button
             color="orange"
             radius="full"
