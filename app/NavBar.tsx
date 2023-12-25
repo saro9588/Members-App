@@ -19,13 +19,7 @@ const NavBar = () => {
             </Link>
             <NavLinks />
           </Flex>
-          <SessionUser
-            id={""}
-            name={null}
-            email={null}
-            emailVerified={null}
-            image={null}
-          />
+          <SessionUser />
           <AuthStatus />
         </Flex>
       </Container>
@@ -89,10 +83,10 @@ const AuthStatus = () => {
   );
 };
 
-const SessionUser = ({ name }: User) => {
-  const { status } = useSession();
+const SessionUser = () => {
+  const { data, status } = useSession();
 
-  return <Box>{status === "authenticated" && <p>{name}</p>}</Box>;
+  return <Box>{status === "authenticated" && <p>{data.user?.email}</p>}</Box>;
 };
 
 export default NavBar;
