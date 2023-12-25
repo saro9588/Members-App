@@ -6,7 +6,6 @@ import { usePathname } from "next/navigation";
 import classnames from "classnames";
 import { useSession } from "next-auth/react";
 import { Box, Container, Flex } from "@radix-ui/themes";
-import { User } from "@prisma/client";
 
 const NavBar = () => {
   return (
@@ -19,8 +18,12 @@ const NavBar = () => {
             </Link>
             <NavLinks />
           </Flex>
-          <SessionUser />
-          <AuthStatus />
+          <Flex>
+            <Container>
+              <SessionUser />
+              <AuthStatus />
+            </Container>
+          </Flex>
         </Flex>
       </Container>
     </nav>
@@ -85,7 +88,6 @@ const AuthStatus = () => {
 
 const SessionUser = () => {
   const { data, status } = useSession();
-
   return <Box>{status === "authenticated" && <p>{data.user?.email}</p>}</Box>;
 };
 
