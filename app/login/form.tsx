@@ -44,9 +44,17 @@ export default function Form() {
           radius="full"
           placeholder="enter password…"
         />
-        <Button color="orange" variant="soft" type="submit">
-          Login
-        </Button>
+        <div className="flex justify-center">
+          <Button
+            color="orange"
+            radius="full"
+            size="2"
+            variant="soft"
+            type="submit"
+          >
+            Login
+          </Button>
+        </div>
       </Flex>
     </form>
   );

@@ -23,7 +23,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <AuthProvider>
-          <Theme accentColor="cyan" radius="large">
+          <Theme radius="large">
             <NavBar />
             <main className="p-5">{children}</main>
           </Theme>

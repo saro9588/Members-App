@@ -1,6 +1,4 @@
 "use client";
-
-import { FormEvent } from "react";
 import { useRouter } from "next/navigation";
 import { Button, Flex, TextField } from "@radix-ui/themes";
 
@@ -43,9 +41,17 @@ export default function Form() {
             radius="full"
             placeholder="enter password…"
           />
-          <Button color="orange" variant="soft" type="submit">
-            Submit
-          </Button>
+          <div className="flex justify-center">
+            <Button
+              color="orange"
+              radius="full"
+              size="2"
+              variant="soft"
+              type="submit"
+            >
+              Submit
+            </Button>
+          </div>
         </Flex>
       </form>
     </>
