@@ -5,7 +5,17 @@ import { AiFillEdit } from "react-icons/ai";
 import { usePathname } from "next/navigation";
 import classnames from "classnames";
 import { useSession } from "next-auth/react";
-import { Box, Container, Flex } from "@radix-ui/themes";
+import {
+  Box,
+  Container,
+  Flex,
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  Button,
+} from "@radix-ui/themes";
+import { CiMenuBurger } from "react-icons/ci";
 
 const NavBar = () => {
   return (
@@ -19,10 +29,10 @@ const NavBar = () => {
             <NavLinks />
           </Flex>
           <Flex>
-            <Container>
+            <Box>
               <SessionUser />
               <AuthStatus />
-            </Container>
+            </Box>
           </Flex>
         </Flex>
       </Container>
@@ -51,21 +61,45 @@ const NavLinks = () => {
   );
 
   return (
-    <ul className="flex space-x-6 ">
-      {filteredLinks.map((link) => (
-        <li key={link.href}>
-          <Link
-            className={classnames({
-              "nav-link": true,
-              "!text-zinc-900": link.href === currentPath,
-            })}
-            href={link.href}
-          >
-            {link.label}
-          </Link>
-        </li>
-      ))}
-    </ul>
+    <DropdownMenu.Root>
+      <DropdownMenuTrigger>
+        <Button variant="soft">
+          <CiMenuBurger />
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent>
+        <ul className="flex flex-col">
+          {filteredLinks.map((link) => (
+            <DropdownMenuItem key={link.href}>
+              <Link
+                className={classnames({
+                  "nav-link": true,
+                  "!text-zinc-900": link.href === currentPath,
+                })}
+                href={link.href}
+              >
+                {link.label}
+              </Link>
+            </DropdownMenuItem>
+          ))}
+        </ul>
+      </DropdownMenuContent>
+    </DropdownMenu.Root>
+    // <ul className="flex space-x-6 ">
+    //   {filteredLinks.map((link) => (
+    //     <li key={link.href}>
+    //       <Link
+    //         className={classnames({
+    //           "nav-link": true,
+    //           "!text-zinc-900": link.href === currentPath,
+    //         })}
+    //         href={link.href}
+    //       >
+    //         {link.label}
+    //       </Link>
+    //     </li>
+    //   ))}
+    // </ul>
   );
 };
 
@@ -88,6 +122,7 @@ const AuthStatus = () => {
 
 const SessionUser = () => {
   const { data, status } = useSession();
+
   return <Box>{status === "authenticated" && <p>{data.user?.email}</p>}</Box>;
 };
 
