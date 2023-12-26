@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import { AiFillEdit } from "react-icons/ai";
 import { usePathname } from "next/navigation";
 import classnames from "classnames";
@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
   Button,
 } from "@radix-ui/themes";
+
 import { CiMenuBurger } from "react-icons/ci";
 
 const NavBar = () => {
@@ -43,6 +44,7 @@ const NavBar = () => {
 const NavLinks = () => {
   const currentPath = usePathname();
   const { status } = useSession();
+  const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
     { label: "Create Account", href: "/register" },
@@ -60,8 +62,15 @@ const NavLinks = () => {
       (!link.authRequired || status === "authenticated")
   );
 
+  const handleLinkClick = () => {
+    setMenuOpen(false);
+  };
+
   return (
-    <DropdownMenu.Root>
+    <DropdownMenu.Root
+      open={menuOpen}
+      onOpenChange={(isOpen) => setMenuOpen(isOpen)}
+    >
       <DropdownMenuTrigger>
         <Button variant="soft">
           <CiMenuBurger />
@@ -70,7 +79,7 @@ const NavLinks = () => {
       <DropdownMenuContent>
         <ul className="flex flex-col">
           {filteredLinks.map((link) => (
-            <DropdownMenuItem key={link.href}>
+            <DropdownMenuItem key={link.href} onClick={handleLinkClick}>
               <Link
                 className={classnames({
                   "nav-link": true,
@@ -85,21 +94,6 @@ const NavLinks = () => {
         </ul>
       </DropdownMenuContent>
     </DropdownMenu.Root>
-    // <ul className="flex space-x-6 ">
-    //   {filteredLinks.map((link) => (
-    //     <li key={link.href}>
-    //       <Link
-    //         className={classnames({
-    //           "nav-link": true,
-    //           "!text-zinc-900": link.href === currentPath,
-    //         })}
-    //         href={link.href}
-    //       >
-    //         {link.label}
-    //       </Link>
-    //     </li>
-    //   ))}
-    // </ul>
   );
 };
 

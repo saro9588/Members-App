@@ -25,7 +25,7 @@ export default function RootLayout({
         <AuthProvider>
           <Theme radius="large">
             <NavBar />
-            <main className="p-10">{children}</main>
+            <main className="p-5">{children}</main>
           </Theme>
         </AuthProvider>
       </body>
