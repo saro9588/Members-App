@@ -33,6 +33,7 @@ export default function Form() {
             type="email"
             radius="full"
             placeholder="enter email..."
+            required={true}
           />
           <label>Password</label>
           <TextField.Input
@@ -40,14 +41,16 @@ export default function Form() {
             type="password"
             radius="full"
             placeholder="enter password…"
+            required={true}
           />
           <div className="flex justify-center">
             <Button
               color="orange"
               radius="full"
               size="2"
-              variant="soft"
+              variant="solid"
               type="submit"
+              className="hover:cursor-pointer"
             >
               Submit
             </Button>

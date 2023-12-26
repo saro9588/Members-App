@@ -1,12 +1,13 @@
 "use client";
 
-import { FormEvent } from "react";
+import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Flex, TextField, Button } from "@radix-ui/themes";
 
 export default function Form() {
   const router = useRouter();
+  const [error, setError] = useState("");
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -16,11 +17,14 @@ export default function Form() {
       redirect: false,
     });
 
-    if (!response?.error) {
-      router.push(
-        new URLSearchParams(window.location.search).get("callbackUrl") || "/"
-      );
-      router.refresh();
+    if (response?.error) {
+      {
+        setError("Invalid email/password.");
+      }
+      // router.push(
+      //   new URLSearchParams(window.location.search).get("callbackUrl") || "/"
+      // );
+      // router.refresh();
     }
   };
   return (
@@ -36,6 +40,7 @@ export default function Form() {
           type="email"
           radius="full"
           placeholder="enter email..."
+          required={true}
         />
         <label>Password</label>
         <TextField.Input
@@ -43,14 +48,18 @@ export default function Form() {
           type="password"
           radius="full"
           placeholder="enter password…"
+          required={true}
         />
+        {error && <p className="text-red-500">{error}</p>}
+
         <div className="flex justify-center hover:cursor-pointer">
           <Button
             color="orange"
             radius="full"
             size="2"
-            variant="soft"
+            variant="solid"
             type="submit"
+            className="hover:cursor-pointer"
           >
             Login
           </Button>
