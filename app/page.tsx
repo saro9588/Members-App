@@ -25,6 +25,5 @@ export default function Home() {
 
 const SessionUser = () => {
   const { data, status } = useSession();
-
   return <Box>{status === "authenticated" && <p>{data.user?.email}</p>}</Box>;
 };

@@ -1,9 +1,11 @@
 "use client";
 import { useRouter } from "next/navigation";
 import { Button, Flex, TextField } from "@radix-ui/themes";
+import { useState } from "react";
 
 export default function Form() {
   const router = useRouter();
+  const [errorMessage, setErrorMessage] = useState("");
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
@@ -15,8 +17,13 @@ export default function Form() {
       }),
     });
 
-    if (response?.ok) {
+    if (response.ok) {
       router.push("/login");
+    } else {
+      const data = await response.json();
+      if (data?.error) {
+        setErrorMessage(data.error); // Set error message from API response
+      }
     }
   };
   return (
@@ -43,6 +50,7 @@ export default function Form() {
             placeholder="enter password…"
             required={true}
           />
+          {errorMessage && <p className="text-red-500">{errorMessage}</p>}
           <div className="flex justify-center">
             <Button
               color="orange"
