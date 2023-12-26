@@ -57,7 +57,7 @@ export default function Form() {
             color="orange"
             radius="full"
             size="2"
-            variant="solid"
+            variant="soft"
             type="submit"
             className="hover:cursor-pointer"
           >
