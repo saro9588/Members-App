@@ -6,19 +6,24 @@ import { useSession } from "next-auth/react";
 export default function Home() {
   return (
     <>
-      <Flex align="center" gap="1">
-        <h1>Welcome</h1>
-        <SessionUser />!
-      </Flex>
-      <p>
-        This App is for adding members and crearting notes unique to each member
-      </p>
-      <Button className="">
-        <Link href="/members">All Members</Link>
-      </Button>
-      <Button className="">
-        <Link href="/members/new">Add Member</Link>
-      </Button>
+      <div className="flex flex-col gap-2">
+        <Flex align="center" gap="1">
+          <h1>Welcome</h1>
+          <SessionUser />!
+        </Flex>
+        <p>
+          This App is for adding members and crearting notes unique to each
+          member
+        </p>
+        <div className="flex flex-col gap-2 items-start">
+          <Button size="2">
+            <Link href="/members">All Members</Link>
+          </Button>
+          <Button size="2">
+            <Link href="/members/new">Add Members</Link>
+          </Button>
+        </div>
+      </div>
     </>
   );
 }

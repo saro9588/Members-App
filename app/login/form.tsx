@@ -4,6 +4,7 @@ import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Flex, TextField, Button } from "@radix-ui/themes";
+import Link from "next/link";
 
 export default function Form() {
   const router = useRouter();
@@ -52,7 +53,7 @@ export default function Form() {
         />
         {error && <p className="text-red-500">{error}</p>}
 
-        <div className="flex justify-center hover:cursor-pointer">
+        <div className="flex flex-col justify-center items-center">
           <Button
             color="orange"
             radius="full"
@@ -62,6 +63,17 @@ export default function Form() {
             className="hover:cursor-pointer"
           >
             Login
+          </Button>
+          <p>-or-</p>
+          <Button
+            color="orange"
+            radius="full"
+            size="2"
+            variant="soft"
+            type="submit"
+            className="hover:cursor-pointer"
+          >
+            <Link href="/register">Create Account</Link>
           </Button>
         </div>
       </Flex>
