@@ -12,8 +12,8 @@ export default function Home() {
           <SessionUser />!
         </Flex>
         <p>
-          This App is for adding members and crearting notes unique to each
-          member
+          This App is designed for creating members and adding notes unique to
+          each member.
         </p>
         <div className="flex flex-col gap-2 items-start">
           <Button size="2">
