@@ -2,6 +2,12 @@
 This is an Application that I am developing for my business. I run a private music studio and this app will help me create student portfolios, update and delete them.  
 This app can serve other types of users as well. You can create a user, store specific info about each user, update the info of each user. 
 
+## Setup
+1) clone the repo
+2) create a .env file similar to the .env.example file in the project root.
+3) npm install
+4) npm run dev
+
 ## Improvements 
 1) UI error handling upon logging in with an invalid user/password. 
 2) Add user authorization: secure API endpoints.
