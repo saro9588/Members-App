@@ -9,8 +9,8 @@ This app can serve other types of users as well. You can create a user, store sp
 4) npm run dev
 
 ## Improvements 
-1) UI error handling upon logging in with an invalid user/password. 
-2) Add user authorization: secure API endpoints.
+1) create the edit Note functionality.
+
 
 ## Built with
 React. 
