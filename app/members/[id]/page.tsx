@@ -30,10 +30,14 @@ export default async function Page({ params }: Props) {
             <NoteDetails note={note} />
           </Box>
         </Grid>
-        <EditNoteButton noteId={note.id} />
-        <Button className="">
-          <Link href="/members">All Members</Link>
-        </Button>
+        <div>
+          <EditNoteButton noteId={note.id} />
+        </div>
+        <div>
+          <Button className="">
+            <Link href="/members">All Members</Link>
+          </Button>
+        </div>
       </div>
     </>
   );
