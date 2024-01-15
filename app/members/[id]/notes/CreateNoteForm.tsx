@@ -35,7 +35,7 @@ const CreateNoteForm = ({ id }: { id: number }) => {
     }
   });
   return (
-    <div className="grid grid-col-1 mx-auto max-w-screen-lg">
+    <div>
       <form className="max-w-xl" onSubmit={onSubmit}>
         <TextArea
           {...register("description", { required: "This is required." })}

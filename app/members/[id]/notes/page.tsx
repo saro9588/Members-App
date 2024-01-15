@@ -7,8 +7,10 @@ interface Props {
 const MemberNoteForm = ({ params }: Props) => {
   return (
     <>
-      <p>Member Notes</p>
-      <CreateNoteForm id={params.id} />
+      <div className="grid grid-col-1 mx-auto max-w-screen-lg gap-2">
+        <p>Member Notes</p>
+        <CreateNoteForm id={params.id} />
+      </div>
     </>
   );
 };

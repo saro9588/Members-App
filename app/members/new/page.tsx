@@ -7,11 +7,13 @@ const NewMemberPage = () => {
   console.log();
   return (
     <>
-      <div>Create a New Member</div>
-      <NewMemberForm />
-      <Button className="">
-        <Link href="/members">All Members</Link>
-      </Button>
+      <div className="grid grid-col-1 mx-auto max-w-screen-lg gap-2">
+        <p>Create a New Member</p>
+        <NewMemberForm />
+        <Button className="">
+          <Link href="/members">All Members</Link>
+        </Button>
+      </div>
     </>
   );
 };
