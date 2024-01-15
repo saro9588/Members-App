@@ -7,9 +7,8 @@ interface Props {
 const MemberNoteForm = ({ params }: Props) => {
   return (
     <>
-      <p>Student Details</p>
+      <p>Member Notes</p>
       <CreateNoteForm id={params.id} />
-      <Button>Test</Button>
     </>
   );
 };

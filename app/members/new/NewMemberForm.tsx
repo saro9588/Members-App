@@ -28,7 +28,7 @@ const NewMemberForm = () => {
     }
   });
   return (
-    <div>
+    <div className="grid grid-col-1 mx-auto max-w-screen-lg">
       <form className="max-w-xl space-y-3 mb-5">
         <TextField.Input
           {...register("firstName", {

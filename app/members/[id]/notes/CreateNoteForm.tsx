@@ -35,15 +35,17 @@ const CreateNoteForm = ({ id }: { id: number }) => {
     }
   });
   return (
-    <form className="max-w-xl" onSubmit={onSubmit}>
-      <TextArea
-        {...register("description", { required: "This is required." })}
-        placeholder="Take notes..."
-      />
-      <Button color="indigo" variant="soft">
-        Submit
-      </Button>
-    </form>
+    <div className="grid grid-col-1 mx-auto max-w-screen-lg">
+      <form className="max-w-xl" onSubmit={onSubmit}>
+        <TextArea
+          {...register("description", { required: "This is required." })}
+          placeholder="Take notes..."
+        />
+        <Button color="indigo" variant="soft">
+          Submit
+        </Button>
+      </form>
+    </div>
   );
 };
 export const revalidate = 0;
