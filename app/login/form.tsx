@@ -22,11 +22,8 @@ export default function Form() {
       {
         setError("Invalid email/password.");
       }
-      // router.push(
-      //   new URLSearchParams(window.location.search).get("callbackUrl") || "/"
-      // );
-      // router.refresh();
     }
+    router.push("/");
   };
   return (
     <form

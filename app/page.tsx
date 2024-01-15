@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 export default function Home() {
   return (
     <>
-      <div className="flex flex-col gap-2">
+      <div className="grid grid-col-1 gap-2 mx-auto max-w-screen-lg">
         <Flex align="center" gap="1">
           <h1>Welcome</h1>
           <SessionUser />!
