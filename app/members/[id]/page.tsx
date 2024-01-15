@@ -23,18 +23,18 @@ export default async function Page({ params }: Props) {
 
   return (
     <>
-      <h1>Member detailed notes</h1>
-      <Grid columns={{ initial: "1", md: "2" }} gap="5" mb="5">
-        <Box>
-          <NoteDetails note={note} />
-        </Box>
-        <Box>
-          <EditNoteButton noteId={note.id} />
-        </Box>
-      </Grid>
-      <Button className="">
-        <Link href="/members">All Members</Link>
-      </Button>
+      <div className="grid grid-col-1 mx-auto max-w-screen-lg gap-2">
+        <h1>Member detailed notes</h1>
+        <Grid columns={{ initial: "1", md: "2" }} gap="5" mb="5">
+          <Box>
+            <NoteDetails note={note} />
+          </Box>
+        </Grid>
+        <EditNoteButton noteId={note.id} />
+        <Button className="">
+          <Link href="/members">All Members</Link>
+        </Button>
+      </div>
     </>
   );
 }
