@@ -5,13 +5,16 @@ import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
 import { Flex, TextField, Button } from "@radix-ui/themes";
 import Link from "next/link";
+import Spinner from "../components/Spinner";
 
 export default function Form() {
   const router = useRouter();
+  const [isSubmitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    setSubmitting(true);
     const response = await signIn("credentials", {
       email: formData.get("email"),
       password: formData.get("password"),
@@ -20,6 +23,7 @@ export default function Form() {
 
     if (response?.error) {
       {
+        setSubmitting(false);
         setError("Invalid email/password.");
       }
     }
@@ -52,6 +56,7 @@ export default function Form() {
 
         <div className="flex flex-col justify-center items-center">
           <Button
+            disabled={isSubmitting}
             color="orange"
             radius="full"
             size="2"
@@ -59,7 +64,7 @@ export default function Form() {
             type="submit"
             className="hover:cursor-pointer"
           >
-            Login
+            Login {isSubmitting && <Spinner />}
           </Button>
           <p>-or-</p>
           <Button

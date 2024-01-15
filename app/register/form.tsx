@@ -2,13 +2,16 @@
 import { useRouter } from "next/navigation";
 import { Button, Flex, TextField } from "@radix-ui/themes";
 import { useState } from "react";
+import Spinner from "../components/Spinner";
 
 export default function Form() {
   const router = useRouter();
+  const [isSubmitting, setSubmitting] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const handleSubmit = async (e: any) => {
     e.preventDefault();
     const formData = new FormData(e.currentTarget);
+    setSubmitting(true);
     const response = await fetch("api/auth/register", {
       method: "POST",
       body: JSON.stringify({
@@ -22,6 +25,7 @@ export default function Form() {
     } else {
       const data = await response.json();
       if (data?.error) {
+        setSubmitting(false);
         setErrorMessage(data.error); // Set error message from API response
       }
     }
@@ -53,6 +57,7 @@ export default function Form() {
           {errorMessage && <p className="text-red-500">{errorMessage}</p>}
           <div className="flex justify-center">
             <Button
+              disabled={isSubmitting}
               color="orange"
               radius="full"
               size="2"
@@ -60,7 +65,7 @@ export default function Form() {
               type="submit"
               className="hover:cursor-pointer"
             >
-              Submit
+              Submit {isSubmitting && <Spinner />}
             </Button>
           </div>
         </Flex>
