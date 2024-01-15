@@ -36,12 +36,12 @@ const CreateNoteForm = ({ id }: { id: number }) => {
   });
   return (
     <div>
-      <form className="max-w-xl gap-2" onSubmit={onSubmit}>
+      <form className="max-w-xl" onSubmit={onSubmit}>
         <TextArea
           {...register("description", { required: "This is required." })}
           placeholder="Take notes..."
         />
-        <Button color="indigo" variant="soft">
+        <Button color="indigo" variant="soft" className="mt-2">
           Submit
         </Button>
       </form>
