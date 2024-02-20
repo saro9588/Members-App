@@ -6,15 +6,14 @@ export async function POST(request: Request) {
   try {
     const { email, password } = await request.json();
 
-    // Check if the email already exists in the database
     const data: QueryResult = await sql`
       SELECT email FROM users WHERE email = ${email}
     `;
     const userExists = data.rows.length > 0;
     if (userExists) {
       return NextResponse.json(
-        { error: "User with provided email already exists." },
-        { status: 400 } // Bad request status code
+        { error: "An error occurred, please try again." },
+        { status: 400 }
       );
     }
 
