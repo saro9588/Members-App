@@ -3,7 +3,7 @@
 import { FormEvent, useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { Flex, TextField, Button } from "@radix-ui/themes";
+import { Flex, TextField, Button, Card } from "@radix-ui/themes";
 import Link from "next/link";
 import Spinner from "../components/Spinner";
 
@@ -30,31 +30,35 @@ export default function Form() {
     router.push("/");
   };
   return (
-    <form
-      onSubmit={handleSubmit}
-      className="flex flex-col gap-2 mx-auto max-w-md"
-    >
-      <h1 className="text-xl">Login to your Account</h1>
-      <Flex direction="column" gap="3" style={{ maxWidth: 400 }}>
-        <label>Email</label>
-        <TextField.Input
-          name="email"
-          type="email"
-          radius="full"
-          placeholder="enter email..."
-          required={true}
-        />
-        <label>Password</label>
-        <TextField.Input
-          name="password"
-          type="password"
-          radius="full"
-          placeholder="enter password…"
-          required={true}
-        />
+    <Card className="max-w-md mx-auto p-4 border border-gray-300 rounded-lg shadow-md">
+      <h1 className="text-xl text-center mb-4 bg-blue-50 p-5 rounded-lg">
+        Login to your Account
+      </h1>
+      <form onSubmit={handleSubmit} className="flex flex-col gap-2">
+        <div className=" pb-4">
+          <div className="border-">
+            <label className="block mb-1">Email</label>
+          </div>
+          <TextField.Input
+            name="email"
+            type="email"
+            radius="full"
+            placeholder="enter email..."
+            required={true}
+          />
+        </div>
+        <div className="pb-4">
+          <label className="block mb-1">Password</label>
+          <TextField.Input
+            name="password"
+            type="password"
+            radius="full"
+            placeholder="enter password…"
+            required={true}
+          />
+        </div>
         {error && <p className="text-red-500">{error}</p>}
-
-        <div className="flex flex-col justify-center items-center">
+        <div className="flex flex-col items-center">
           <Button
             disabled={isSubmitting}
             color="orange"
@@ -66,7 +70,7 @@ export default function Form() {
           >
             Login {isSubmitting && <Spinner />}
           </Button>
-          <p>-or-</p>
+          <p className="my-2">-or-</p>
           <Button
             color="orange"
             radius="full"
@@ -78,7 +82,7 @@ export default function Form() {
             <Link href="/register">Create Account</Link>
           </Button>
         </div>
-      </Flex>
-    </form>
+      </form>
+    </Card>
   );
 }

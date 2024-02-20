@@ -1,6 +1,6 @@
 "use client";
 import { useRouter } from "next/navigation";
-import { Button, Flex, TextField } from "@radix-ui/themes";
+import { Button, Card, Flex, TextField } from "@radix-ui/themes";
 import { useState } from "react";
 import Spinner from "../components/Spinner";
 
@@ -31,12 +31,14 @@ export default function Form() {
     }
   };
   return (
-    <>
+    <Card className="max-w-md mx-auto p-4 border border-gray-300 rounded-lg shadow-md">
       <form
         onSubmit={handleSubmit}
         className="flex flex-col gap-2 mx-auto max-w-md"
       >
-        <h1 className="text-xl">Create an Account</h1>
+        <h1 className="text-xl text-center mb-4 bg-blue-50 p-5 rounded-lg">
+          Create an Account
+        </h1>
         <Flex direction="column" gap="3" style={{ maxWidth: 400 }}>
           <label>Email</label>
           <TextField.Input
@@ -70,6 +72,6 @@ export default function Form() {
           </div>
         </Flex>
       </form>
-    </>
+    </Card>
   );
 }
