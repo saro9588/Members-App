@@ -1,16 +1,17 @@
 "use client";
-import React from "react";
 import { Button, TextArea } from "@radix-ui/themes";
+import React from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { Note } from "@prisma/client";
 
-const EditNoteForm = ({ note }: { note: Note }) => {
+const CreateNoteForm = ({ id }: { id: number }) => {
   const router = useRouter();
 
-  interface NoteFormData {
+  interface MemberNote {
+    id: number;
     description: string;
+    authorId: number;
   }
 
   const {
@@ -18,33 +19,27 @@ const EditNoteForm = ({ note }: { note: Note }) => {
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<NoteFormData>({});
+  } = useForm<MemberNote>({});
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      const { data: newNote } = await axios.post(
-        `/api/members/${note.id}/`,
-        data,
-        {
-          headers: {
-            "Cache-Control": "no-store",
-          },
-        }
-      );
+      const { data: newNote } = await axios.post(`/api/members/${id}/`, data, {
+        headers: {
+          "Cache-Control": "no-store",
+        },
+      });
       router.push(`/members/${newNote.id}/`);
       console.log(newNote.id);
     } catch (error) {
       console.error(error);
     }
   });
-
   return (
     <div>
       <form className="max-w-xl" onSubmit={onSubmit}>
         <TextArea
           {...register("description", { required: "This is required." })}
-          placeholder="Edit this note..."
-          defaultValue={note.description}
+          placeholder="Take notes..."
         />
         <Button color="indigo" variant="soft" className="mt-2">
           Submit
@@ -53,18 +48,6 @@ const EditNoteForm = ({ note }: { note: Note }) => {
     </div>
   );
 };
-// export const revalidate = 0;
-// export const dynamic = "force-dynamic";
-export default EditNoteForm;
-
-// import React from "react";
-
-// const EditNotePage = () => {
-//   return (
-//     <div className="grid grid-col-1 mx-auto max-w-screen-lg gap-2">
-//       <p>Page coming soon...</p>
-//     </div>
-//   );
-// };
-
-// export default EditNotePage;
+export const revalidate = 0;
+export const dynamic = "force-dynamic";
+export default CreateNoteForm;
