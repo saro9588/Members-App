@@ -1,6 +1,6 @@
 "use client";
-import { Button, TextArea } from "@radix-ui/themes";
 import React from "react";
+import { Button, TextArea } from "@radix-ui/themes";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
@@ -9,18 +9,12 @@ import { Note } from "@prisma/client";
 const EditNoteForm = ({ id, note }: { id: number; note: Note }) => {
   const router = useRouter();
 
-  interface MemberNote {
-    id: number;
-    description: string;
-    authorId: number;
-  }
-
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<MemberNote>({});
+  } = useForm<Note>({});
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -40,7 +34,7 @@ const EditNoteForm = ({ id, note }: { id: number; note: Note }) => {
       <form className="max-w-xl" onSubmit={onSubmit}>
         <TextArea
           {...register("description", { required: "This is required." })}
-          placeholder="Take notes..."
+          placeholder="Edit this note..."
           defaultValue={note.description}
         />
         <Button color="indigo" variant="soft" className="mt-2">
