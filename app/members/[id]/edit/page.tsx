@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { Note } from "@prisma/client";
 
-const EditNoteForm = ({ id, note }: { id: number; note: Note }) => {
+const EditNoteForm = ({ note }: { note: Note }) => {
   const router = useRouter();
 
   const {
@@ -18,11 +18,15 @@ const EditNoteForm = ({ id, note }: { id: number; note: Note }) => {
 
   const onSubmit = handleSubmit(async (data) => {
     try {
-      const { data: newNote } = await axios.post(`/api/members/${id}/`, data, {
-        headers: {
-          "Cache-Control": "no-store",
-        },
-      });
+      const { data: newNote } = await axios.post(
+        `/api/members/${note.id}/`,
+        data,
+        {
+          headers: {
+            "Cache-Control": "no-store",
+          },
+        }
+      );
       router.push(`/members/${newNote.id}/`);
       console.log(newNote.id);
     } catch (error) {
@@ -44,8 +48,8 @@ const EditNoteForm = ({ id, note }: { id: number; note: Note }) => {
     </div>
   );
 };
-export const revalidate = 0;
-export const dynamic = "force-dynamic";
+// export const revalidate = 0;
+// export const dynamic = "force-dynamic";
 export default EditNoteForm;
 
 // import React from "react";
