@@ -9,12 +9,16 @@ import { Note } from "@prisma/client";
 const EditNoteForm = ({ note }: { note: Note }) => {
   const router = useRouter();
 
+  interface NoteFormData {
+    description: string;
+  }
+
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<Note>({});
+  } = useForm<NoteFormData>({});
 
   const onSubmit = handleSubmit(async (data) => {
     try {
@@ -33,6 +37,7 @@ const EditNoteForm = ({ note }: { note: Note }) => {
       console.error(error);
     }
   });
+
   return (
     <div>
       <form className="max-w-xl" onSubmit={onSubmit}>
