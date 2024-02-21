@@ -1,9 +1,10 @@
-import { Button } from "@radix-ui/themes";
 import "easymde/dist/easymde.min.css";
 import CreateNoteForm from "./CreateNoteForm";
+
 interface Props {
   params: { id: number };
 }
+
 const MemberNoteForm = ({ params }: Props) => {
   return (
     <>
