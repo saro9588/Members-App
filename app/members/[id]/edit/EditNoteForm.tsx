@@ -30,7 +30,6 @@ const EditNoteForm = ({ id, note }: { id: number; note: Note }) => {
             "Cache-Control": "no-store",
           },
         });
-      else await axios.post(`/api/members/${id}/`, data);
     } catch (error) {
       console.error(error);
     }
@@ -41,7 +40,7 @@ const EditNoteForm = ({ id, note }: { id: number; note: Note }) => {
         <TextArea
           {...register("description", { required: "This is required." })}
           placeholder="Take notes..."
-          defaultValue={note.description}
+          defaultValue={note?.description}
         />
         <Button color="indigo" variant="soft" className="mt-2">
           Submit
