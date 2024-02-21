@@ -1,14 +1,14 @@
 import React from "react";
 
-const Page = () => {
+const EditNotePage = () => {
   return (
-    <div>
-      <p>page under construction...</p>
+    <div className="grid grid-col-1 mx-auto max-w-screen-lg gap-2">
+      <p>Page coming soon...</p>
     </div>
   );
 };
 
-export default Page;
+export default EditNotePage;
 
 // import React from "react";
 // import EditNoteForm from "./EditNoteForm";

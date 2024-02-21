@@ -6,7 +6,7 @@ import ReactMarkdown from "react-markdown";
 const NoteDetails = ({ note }: { note: Note }) => {
   return (
     <Card className="max-w-xl" mt="4">
-      <ReactMarkdown>{note?.description}</ReactMarkdown>
+      <ReactMarkdown>{note.description}</ReactMarkdown>
     </Card>
   );
 };
