@@ -27,31 +27,3 @@ export async function POST(
   });
   return NextResponse.json(note, { status: 201 });
 }
-
-// export async function PATCH(
-//   request: NextRequest,
-//   { params }: { params: { id: string } }
-// ) {
-//   const session = await getServerSession(authOptions);
-//   if (!session) return NextResponse.json({}, { status: 401 });
-
-//   const body = await request.json();
-
-//   const noteId = parseInt(params.id);
-//   const existingNote = await prisma.note.findUnique({
-//     where: { id: noteId },
-//   });
-
-//   if (!existingNote) {
-//     return NextResponse.json({ error: "Note not found" }, { status: 404 });
-//   }
-
-//   const updatedNote = await prisma.note.update({
-//     where: { id: noteId },
-//     data: {
-//       description: body.description,
-//     },
-//   });
-
-//   return NextResponse.json(updatedNote, { status: 200 });
-// }
