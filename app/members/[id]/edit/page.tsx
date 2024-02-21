@@ -1,4 +1,3 @@
-"use client";
 import React from "react";
 import EditNoteForm from "./EditNoteForm";
 import { Note } from "@prisma/client";
