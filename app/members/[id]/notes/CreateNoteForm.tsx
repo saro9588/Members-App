@@ -30,6 +30,8 @@ const CreateNoteForm = ({ id }: { id: number }) => {
       });
       router.push(`/members/${note.id}/`);
       console.log(note.id);
+      console.log(note.description);
+      console.log(note);
     } catch (error) {
       console.error(error);
     }
