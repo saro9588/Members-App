@@ -21,22 +21,23 @@ const CreateNoteForm = ({ id }: { id: number }) => {
     formState: { errors },
   } = useForm<MemberNote>({});
 
-  const onSubmit = handleSubmit(async (data) => {
+  const onSubmit = async (data: any) => {
     try {
-      const { data: newNote } = await axios.post(`/api/members/${id}/`, data, {
+      const response = await axios.post(`/api/members/${id}/`, data, {
         headers: {
           "Cache-Control": "no-store",
         },
       });
-      router.push(`/members/${newNote.id}/`);
-      console.log(newNote.id);
+      // Redirect to the newly created note page
+      router.push(`/members/${response.data.id}/`); // Here response.data.id should be the ID of the newly created note
     } catch (error) {
       console.error(error);
     }
-  });
+  };
+
   return (
     <div>
-      <form className="max-w-xl" onSubmit={onSubmit}>
+      <form className="max-w-xl" onSubmit={handleSubmit(onSubmit)}>
         <TextArea
           {...register("description", { required: "This is required." })}
           placeholder="Take notes..."
