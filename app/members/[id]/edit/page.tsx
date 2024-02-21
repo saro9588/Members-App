@@ -1,12 +1,14 @@
 import React from "react";
 
-export const page = () => {
+const Page = () => {
   return (
     <div>
       <p>page under construction...</p>
     </div>
   );
 };
+
+export default Page;
 
 // import React from "react";
 // import EditNoteForm from "./EditNoteForm";
