@@ -25,10 +25,9 @@ export default function Form() {
       {
         setSubmitting(false);
         setError("Invalid email/password or account doesn't exist.");
-        formData.set("email", "");
-        formData.set("password", "");
       }
     }
+    router.push("/");
   };
   return (
     <Card className="max-w-md mx-auto p-4 border border-gray-300 rounded-lg shadow-md">
