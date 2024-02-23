@@ -82,7 +82,6 @@ export default function Form() {
           </Button>
         </div>
       </form>
-      <div>{error}</div>
     </Card>
   );
 }
