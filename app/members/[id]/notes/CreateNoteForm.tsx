@@ -28,7 +28,7 @@ const CreateNoteForm = ({ id }: { id: number }) => {
           "Cache-Control": "no-store",
         },
       });
-      router.push(`/members/${newNote.id}/`);
+      router.push(`/members/${id}/`);
       console.log(newNote.id);
       console.log(newNote);
     } catch (error) {
