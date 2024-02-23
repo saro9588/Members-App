@@ -14,7 +14,9 @@ export default async function Page({ params }: Props) {
   const note = await prisma.note.findUnique({
     where: { id: parseInt(params.id) },
   });
-  if (!note) notFound();
+  if (!note) {
+    console.log("can't find note");
+  }
 
   const member = await prisma.member.findUnique({
     where: { id: parseInt(params.id) },
@@ -26,10 +28,10 @@ export default async function Page({ params }: Props) {
       <h1>Member detailed notes</h1>
       <Grid columns={{ initial: "1", md: "2" }} gap="5" mb="5">
         <Box>
-          <NoteDetails note={note} />
+          <NoteDetails note={note!} />
         </Box>
         <Box>
-          <EditNoteButton noteId={note.id} />
+          <EditNoteButton noteId={note!.id} />
         </Box>
       </Grid>
       <Button>
