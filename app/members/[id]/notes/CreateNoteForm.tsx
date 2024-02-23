@@ -25,7 +25,7 @@ const CreateNoteForm = ({ id }: { id: number }) => {
     try {
       const { data: newNote } = await axios.post(`/api/members/${id}/`, data, {
         headers: {
-          // "Cache-Control": "no-store",
+          "Cache-Control": "no-store",
         },
       });
       router.push(`/members/${newNote.id}/`);
@@ -41,7 +41,7 @@ const CreateNoteForm = ({ id }: { id: number }) => {
         {...register("description", { required: "This is required." })}
         placeholder="Take notes..."
       />
-      <Button color="indigo" variant="soft">
+      <Button color="indigo" variant="soft" type="submit">
         Submit
       </Button>
     </form>

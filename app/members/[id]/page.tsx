@@ -22,7 +22,7 @@ export default async function Page({ params }: Props) {
   if (!member) notFound();
 
   return (
-    <>
+    <div>
       <h1>Member detailed notes</h1>
       <Grid columns={{ initial: "1", md: "2" }} gap="5" mb="5">
         <Box>
@@ -32,10 +32,10 @@ export default async function Page({ params }: Props) {
           <EditNoteButton noteId={note.id} />
         </Box>
       </Grid>
-      <Button className="">
+      <Button>
         <Link href="/members">All Members</Link>
       </Button>
-    </>
+    </div>
   );
 }
 export const dynamic = "force-dynamic";
