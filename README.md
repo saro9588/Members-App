@@ -8,7 +8,15 @@ This app can serve other types of users as well. You can create a user, store sp
 1. clone the repo
 2. create a .env file similar to the .env.example file in the project root.
 3. npm install
-4. npm run dev
+4. Set up Prisma:
+   - Make sure you have Prisma installed globally or as a dev dependency in your project (npm install -D @prisma/cli).
+   - If you haven't already initialized Prisma in your project, you can do so by running npx prisma init. This command will create the necessary Prisma configuration files.
+   - Define your database schema in the schema.prisma file. Define models for Users, Members, and Notes, along with their respective fields and relationships.
+   - Once your schema is defined, you can generate the Prisma client by running npx prisma generate.
+   - To create the database tables based on your schema, run npx prisma migrate dev. This command will create a migration with the changes needed to synchronize your database schema with your - Prisma schema. Then, it applies the migration to your database.
+   - Verify that the tables for Users, Members, and Notes have been created in your database.
+   - creat one-to-many realationship between the Member table and the Note table.
+5. npm run dev
 
 ## Issues:
 
