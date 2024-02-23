@@ -21,32 +21,30 @@ const CreateNoteForm = ({ id }: { id: number }) => {
     formState: { errors },
   } = useForm<MemberNote>({});
 
-  const onSubmit = async (data: any) => {
+  const onSubmit = handleSubmit(async (data) => {
     try {
-      const response = await axios.post(`/api/members/${id}/`, data, {
+      const { data: newNote } = await axios.post(`/api/members/${id}/`, data, {
         headers: {
           "Cache-Control": "no-store",
         },
       });
-      // Redirect to the newly created note page
-      router.push(`/members/${response.data.id}/`); // Here response.data.id should be the ID of the newly created note
+      router.push(`/members/${newNote.id}/`);
+      console.log(newNote.id);
+      console.log(newNote);
     } catch (error) {
       console.error(error);
     }
-  };
-
+  });
   return (
-    <div>
-      <form className="max-w-xl" onSubmit={handleSubmit(onSubmit)}>
-        <TextArea
-          {...register("description", { required: "This is required." })}
-          placeholder="Take notes..."
-        />
-        <Button color="indigo" variant="soft" className="mt-2">
-          Submit
-        </Button>
-      </form>
-    </div>
+    <form className="max-w-xl" onSubmit={onSubmit}>
+      <TextArea
+        {...register("description", { required: "This is required." })}
+        placeholder="Take notes..."
+      />
+      <Button color="indigo" variant="soft">
+        Submit
+      </Button>
+    </form>
   );
 };
 export const revalidate = 0;
