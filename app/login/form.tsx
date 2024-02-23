@@ -25,7 +25,8 @@ export default function Form() {
       {
         setSubmitting(false);
         setError("Invalid email/password or account doesn't exist.");
-        e.currentTarget.reset();
+        formData.set("email", "");
+        formData.set("password", "");
       }
     }
   };
