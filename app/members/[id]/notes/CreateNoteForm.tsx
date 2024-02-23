@@ -41,7 +41,7 @@ const CreateNoteForm = ({ id }: { id: number }) => {
         {...register("description", { required: "This is required." })}
         placeholder="Take notes..."
       />
-      <Button color="indigo" variant="soft" type="submit">
+      <Button color="indigo" variant="soft">
         Submit
       </Button>
     </form>
