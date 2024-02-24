@@ -5,20 +5,14 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const CreateNoteForm = ({
-  id,
-  handleDataUpdate,
-}: {
+interface MemberNote {
   id: number;
-  handleDataUpdate: (data: any) => void;
-}) => {
-  const router = useRouter();
+  description: string;
+  authorId: number;
+}
 
-  interface MemberNote {
-    id: number;
-    description: string;
-    authorId: number;
-  }
+const CreateNoteForm = ({ id }: { id: number }) => {
+  const router = useRouter();
 
   const {
     register,
@@ -32,17 +26,7 @@ const CreateNoteForm = ({
   const onSubmit = handleSubmit(async (data) => {
     setIsLoading(true);
     try {
-      const { data: newNote } = await axios.post(`/api/members/${id}/`, data, {
-        headers: {
-          "Cache-Control": "no-store",
-        },
-      });
-
-      const response = await axios.get(`/api/members/${id}`);
-      if (response.data) {
-        // Update component state with the latest member data
-        handleDataUpdate(response.data);
-      }
+      const { data: newNote } = await axios.post(`/api/members/${id}/`, data);
 
       router.push(`/members/${newNote.id}/`);
     } catch (error) {
