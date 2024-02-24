@@ -5,7 +5,13 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 
-const CreateNoteForm = ({ id }: { id: number }) => {
+const CreateNoteForm = ({
+  id,
+  handleDataUpdate,
+}: {
+  id: number;
+  handleDataUpdate: (data: any) => void;
+}) => {
   const router = useRouter();
 
   interface MemberNote {
@@ -31,7 +37,13 @@ const CreateNoteForm = ({ id }: { id: number }) => {
           "Cache-Control": "no-store",
         },
       });
-      // Redirect to the new note page or reload the current page
+
+      const response = await axios.get(`/api/members/${id}`);
+      if (response.data) {
+        // Update component state with the latest member data
+        handleDataUpdate(response.data);
+      }
+
       router.push(`/members/${newNote.id}/`);
     } catch (error) {
       console.error(error);
