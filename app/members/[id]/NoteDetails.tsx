@@ -6,9 +6,9 @@ import ReactMarkdown from "react-markdown";
 const NoteDetails = ({ note }: { note: Note }) => {
   return (
     <Card className="max-w-xl" mt="4">
-      <>{note}</>
-      <Box>{note.id}</Box>
-      <Box>{note.description}</Box>
+      <Box>ID: {note.id}</Box>
+      <Box>Description: {note.description}</Box>
+      <Box>Author ID: {note.authorId}</Box>
     </Card>
   );
 };
