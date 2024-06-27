@@ -18,7 +18,7 @@ This app can serve other types of users as well. You can create a user, store sp
    - creat one-to-many realationship between the Member table and the Note table.
 5. npm run dev
 
-## Issues:
+## Issues/Tickets:
 Server-side Validation: Ensure that whenever a request is made to view or edit member details (via a URL or any other means), your backend (server-side) code verifies that the requested member belongs to the currently authenticated user.
 
 ## Improvements
