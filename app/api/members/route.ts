@@ -29,7 +29,7 @@ export async function POST(request: NextRequest) {
       createdBy: userEmail,
     },
     include: {
-      notes: true, // Ensure 'notes' is a valid relation in your Prisma schema
+      notes: true,
     },
   });
   return NextResponse.json(newMember, { status: 201 });
@@ -46,7 +46,7 @@ export async function GET(request: NextRequest) {
       createdBy: userEmail,
     },
     include: {
-      notes: true, // Ensure 'notes' is a valid relation in your Prisma schema
+      notes: true,
     },
   });
 
