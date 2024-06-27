@@ -12,12 +12,12 @@ interface Props {
 
 export default async function Page({ params }: Props) {
   const note = await prisma.note.findUnique({
-    where: { id: parseInt(params.id) },
+    where: { id: params.id },
   });
   if (!note) notFound();
 
   const member = await prisma.member.findUnique({
-    where: { id: parseInt(params.id) },
+    where: { id: params.id },
   });
   if (!member) notFound();
 

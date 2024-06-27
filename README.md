@@ -19,9 +19,11 @@ This app can serve other types of users as well. You can create a user, store sp
 5. npm run dev
 
 ## Issues/Tickets:
+
 Server-side Validation: Ensure that whenever a request is made to view or edit member details (via a URL or any other means), your backend (server-side) code verifies that the requested member belongs to the currently authenticated user.
 
 ## Improvements
+
 1. create and implement the edit Note functionality:
    I am trying to edit a notes taken previously. I will need a PATCH back-end http request API and in the front-end: axios.patch() function.
 
