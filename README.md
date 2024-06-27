@@ -19,13 +19,10 @@ This app can serve other types of users as well. You can create a user, store sp
 5. npm run dev
 
 ## Issues:
-
-1.  As I have been trying to implement the “edit note” functionality, I somehow broke another feature. The issue is that, once I create a new member for a user, then I proceed to creating a new note associated with the member I created earlier, the note is being created and stored in the database successfully (I am checking that by running queries in the back-end). However; I am getting a 404 page not found error when the domain is trying to render the newly created member note.
+Server-side Validation: Ensure that whenever a request is made to view or edit member details (via a URL or any other means), your backend (server-side) code verifies that the requested member belongs to the currently authenticated user.
 
 ## Improvements
-
-1. fix the above bug, then:
-2. create and implement the edit Note functionality:
+1. create and implement the edit Note functionality:
    I am trying to edit a notes taken previously. I will need a PATCH back-end http request API and in the front-end: axios.patch() function.
 
 ## Built with
