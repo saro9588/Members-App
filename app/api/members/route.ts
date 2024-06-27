@@ -14,10 +14,11 @@ export async function POST(request: NextRequest) {
   const session = await getServerSession(authOptions);
   if (!session || !session.user) return NextResponse.json({}, { status: 401 });
   if (!session.user.email) return NextResponse.json({}, { status: 401 });
+
   const body = await request.json();
   const validation = createUserSchema.safeParse(body);
   if (!validation.success)
-    return NextResponse.json(validation.error.errors, { status: 400 });
+    return NextResponse.json(validation.error.flatten(), { status: 400 });
 
   const userEmail = session.user.email;
   const newMember = await prisma.member.create({
@@ -25,21 +26,27 @@ export async function POST(request: NextRequest) {
       firstname: body.firstName,
       lastname: body.lastName,
       info: body.info,
-      createdAT: body.createdAT,
-      notes: body.notes,
       createdBy: userEmail,
     },
     include: {
-      notes: true,
+      notes: true, // Ensure 'notes' is a valid relation in your Prisma schema
     },
   });
   return NextResponse.json(newMember, { status: 201 });
 }
 
 export async function GET(request: NextRequest) {
+  const session = await getServerSession(authOptions);
+  if (!session || !session.user) return NextResponse.json({}, { status: 401 });
+  if (!session.user.email) return NextResponse.json({}, { status: 401 });
+
+  const userEmail = session.user.email;
   const members = await prisma.member.findMany({
+    where: {
+      createdBy: userEmail,
+    },
     include: {
-      notes: true,
+      notes: true, // Ensure 'notes' is a valid relation in your Prisma schema
     },
   });
 
