@@ -8,7 +8,7 @@ import { useForm } from "react-hook-form";
 const NewMemberForm = () => {
   const router = useRouter();
   interface MemberForm {
-    id: number;
+    id: string;
     firstName: string;
     lastName: string;
     info: string;
