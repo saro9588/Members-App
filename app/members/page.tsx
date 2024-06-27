@@ -41,7 +41,7 @@ const Members = async () => {
                   {member.notes.length > 0 ? (
                     member.notes.map((note) => (
                       <div key={note.id}>
-                        <Button>
+                        <Button onClick={() => console.log(note.id)}>
                           <Link href={`/members/${note.id}`}>More</Link>
                         </Button>
                       </div>
