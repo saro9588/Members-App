@@ -12,7 +12,7 @@ export async function POST(
 
   const body = await request.json();
   const member = await prisma.member.findUnique({
-    where: { id: parseInt(params.id) },
+    where: { id: params.id },
   });
 
   if (!member) {
