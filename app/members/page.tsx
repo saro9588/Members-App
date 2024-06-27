@@ -35,7 +35,7 @@ const Members = async () => {
                 <Table.RowHeaderCell>
                   {`${member.firstname} ${member.lastname}`}
                 </Table.RowHeaderCell>
-                <Table.Cell>{member.createdAT.toDateString()}</Table.Cell>
+                <Table.Cell>{member.createdAt.toDateString()}</Table.Cell>
                 <Table.Cell>{member.info}</Table.Cell>
                 <Table.Cell>
                   {member.notes.length > 0 ? (
