@@ -6,22 +6,22 @@ import { useSession } from "next-auth/react";
 export default function Home() {
   return (
     <>
-      <div className="grid grid-col-1 gap-2 mx-auto max-w-screen-lg">
+      <div className="grid grid-cols-1 gap-2 mx-auto max-w-screen-lg">
         <Flex align="center" gap="1">
           <h1>Welcome</h1>
           <SessionUser />!
         </Flex>
         <p>
-          This App is designed for creating members and adding notes unique to
-          each member.
+          This App is designed for creating members, adding and editing notes
+          unique to each member.
         </p>
         <div className="flex flex-col gap-2 items-start">
-          <Button size="2">
-            <Link href="/members">All Members</Link>
-          </Button>
-          <Button size="2">
-            <Link href="/members/new">Add Members</Link>
-          </Button>
+          <Link href="/members">
+            <Button size="2">Members</Button>
+          </Link>
+          <Link href="/members/new">
+            <Button size="2">Add</Button>
+          </Link>
         </div>
       </div>
     </>
