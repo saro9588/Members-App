@@ -21,8 +21,9 @@ const Members = async () => {
       createdBy: session?.user?.email || "",
     },
   });
-  console.log(members);
+  console.log("Members: ", members);
   if (members) {
+    console.log("Members: ", members);
     return (
       <>
         <p>Members List</p>
