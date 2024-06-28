@@ -21,10 +21,12 @@ const Members = async () => {
       createdBy: session?.user?.email || "",
     },
   });
+  console.log(members);
   if (members) {
     return (
       <>
-        <div>
+        <p>Members List</p>
+        {/* <div>
           <h1>Members List</h1>
           <Table.Root>
             <Table.Header>
@@ -64,7 +66,7 @@ const Members = async () => {
               ))}
             </Table.Body>
           </Table.Root>
-        </div>
+        </div> */}
 
         <Button>
           <Link href="/">Dashboard</Link>
@@ -73,7 +75,6 @@ const Members = async () => {
     );
   }
 };
-//export const dynamic = "force-dynamic";
 
-export const dynamic = "force-dynamic";
+//export const dynamic = "force-dynamic";
 export default Members;
