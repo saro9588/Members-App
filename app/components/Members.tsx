@@ -39,7 +39,7 @@ const Members: React.FC<MembersProps> = ({ members, session }) => {
                     member.notes.map((note) => (
                       <div key={note.id}>
                         <Button>
-                          <Link href={`/members/${note.id}`}>More</Link>
+                          <Link href={`/members/${note.authorId}`}>More</Link>
                         </Button>
                       </div>
                     ))
