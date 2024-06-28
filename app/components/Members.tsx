@@ -1,4 +1,4 @@
-// components/Members.tsx
+"use client";
 import React from "react";
 import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
@@ -38,7 +38,7 @@ const Members: React.FC<MembersProps> = ({ members, session }) => {
                   {member.notes.length > 0 ? (
                     member.notes.map((note) => (
                       <div key={note.id}>
-                        <Button onClick={() => console.log(note.id)}>
+                        <Button>
                           <Link href={`/members/${note.id}`}>More</Link>
                         </Button>
                       </div>
