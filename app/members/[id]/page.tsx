@@ -17,7 +17,7 @@ export default async function Page({ params }: Props) {
   if (!note) notFound();
 
   const member = await prisma.member.findUnique({
-    where: { id: params.id },
+    where: { id: note.authorId },
   });
   if (!member) notFound();
 
