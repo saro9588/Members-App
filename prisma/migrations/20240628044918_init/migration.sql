@@ -1,21 +1,21 @@
 -- CreateTable
 CREATE TABLE `Member` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` VARCHAR(191) NOT NULL,
     `firstname` VARCHAR(25) NOT NULL,
     `lastname` VARCHAR(25) NOT NULL,
     `info` TEXT NOT NULL,
-    `status` ENUM('OPEN', 'IN_PROGRESS', 'CLOSED') NOT NULL DEFAULT 'OPEN',
-    `createdAT` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
-    `updatedAT` DATETIME(3) NOT NULL,
+    `createdAt` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+    `updatedAt` DATETIME(3) NOT NULL,
+    `createdBy` TEXT NOT NULL,
 
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `Note` (
-    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `id` VARCHAR(191) NOT NULL,
     `description` TEXT NOT NULL,
-    `authorId` INTEGER NOT NULL,
+    `authorId` VARCHAR(191) NOT NULL,
 
     INDEX `Note_authorId_idx`(`authorId`),
     PRIMARY KEY (`id`)
@@ -62,6 +62,7 @@ CREATE TABLE `User` (
     `image` VARCHAR(191) NULL,
 
     UNIQUE INDEX `User_email_key`(`email`),
+    INDEX `User_id_idx`(`id`),
     PRIMARY KEY (`id`)
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
