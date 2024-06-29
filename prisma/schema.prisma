@@ -16,14 +16,14 @@ model Member {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   createdBy String
-  notes     Note[]
+  notes     Note[]  
 }
 
 model Note {
   id          String @id @default(uuid())
   description String
   authorId    String
-  author      Member @relation(fields: [authorId], references: [id])
+  author      Member @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
   @@index([authorId])
 }

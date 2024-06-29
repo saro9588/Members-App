@@ -1,16 +1,36 @@
 "use client";
-import React from "react";
+import React, { useState } from "react";
 import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
 import { Member, Note } from "@prisma/client";
 import { Session } from "next-auth";
+import { useRouter } from "next/router";
 
 interface MembersProps {
   members: (Member & { notes: Note[] })[];
   session: Session | null;
 }
 
-const Members: React.FC<MembersProps> = ({ members, session }) => {
+const Members: React.FC<MembersProps> = ({
+  members: initialMembers,
+  session,
+}) => {
+  const [members, setMembers] =
+    useState<(Member & { notes: Note[] })[]>(initialMembers);
+  const router = useRouter();
+
+  const handleDelete = async (memberId: string) => {
+    const res = await fetch(`/api/members/${memberId}`, {
+      method: "DELETE",
+    });
+
+    if (res.ok) {
+      setMembers(members.filter((member) => member.id !== memberId));
+    } else {
+      console.error("Failed to delete member");
+    }
+  };
+
   return (
     <>
       <div>
@@ -21,6 +41,7 @@ const Members: React.FC<MembersProps> = ({ members, session }) => {
               <Table.ColumnHeaderCell>Full name</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Sign Up Date</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Info</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -50,6 +71,9 @@ const Members: React.FC<MembersProps> = ({ members, session }) => {
                       </Link>
                     </Button>
                   )}
+                  <Button onClick={() => handleDelete(member.id)}>
+                    Delete
+                  </Button>
                 </Table.Cell>
               </Table.Row>
             ))}
