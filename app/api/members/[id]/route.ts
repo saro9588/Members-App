@@ -27,3 +27,28 @@ export async function POST(
   });
   return NextResponse.json(note, { status: 201 });
 }
+
+export async function DELETE(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const session = await getServerSession(authOptions);
+  if (!session) return NextResponse.json({}, { status: 401 });
+
+  const member = await prisma.member.findUnique({
+    where: { id: params.id },
+  });
+
+  if (!member) {
+    return NextResponse.json({ error: "Member not found" }, { status: 404 });
+  }
+
+  await prisma.member.delete({
+    where: { id: params.id },
+  });
+
+  return NextResponse.json(
+    { message: "Member deleted successfully" },
+    { status: 200 }
+  );
+}
