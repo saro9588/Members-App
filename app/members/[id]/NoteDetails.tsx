@@ -8,6 +8,7 @@ const NoteDetails = ({ note }: { note: Note }) => {
       <Box>Note ID: {note.id}</Box>
       <Box>Description: {note.description}</Box>
       <Box>Author ID: {note.authorId}</Box>
+      <Box>Author ID: {note.createdBy}</Box>
     </Card>
   );
 };
