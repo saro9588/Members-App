@@ -25,6 +25,7 @@ const Members: React.FC<MembersProps> = ({
     if (res.ok) {
       setMembers(members.filter((member) => member.id !== memberId));
     } else {
+      console.log(memberId);
       console.error("Failed to delete member");
     }
   };
