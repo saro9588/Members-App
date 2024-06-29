@@ -57,7 +57,7 @@ export async function GET(request: NextRequest) {
       include: {
         notes: {
           where: {
-            authorId: userEmail,
+            createdBy: userEmail,
           },
         },
       },
