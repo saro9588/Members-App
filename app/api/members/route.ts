@@ -79,7 +79,9 @@ export async function DELETE(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { id } = await request.json();
+    const { searchParams } = new URL(request.url);
+    const id = searchParams.get("id");
+
     if (!id) {
       console.error("No ID provided");
       return NextResponse.json({ error: "Bad Request" }, { status: 400 });

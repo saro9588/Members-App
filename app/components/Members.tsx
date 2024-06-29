@@ -18,7 +18,7 @@ const Members: React.FC<MembersProps> = ({
     useState<(Member & { notes: Note[] })[]>(initialMembers);
 
   const handleDelete = async (memberId: string) => {
-    const res = await fetch(`/api/members?id=${memberId}`, {
+    const res = await fetch(`/api/members/${memberId}`, {
       method: "DELETE",
     });
     console.log(memberId);
