@@ -10,6 +10,7 @@ const createUserSchema = z.object({
   info: z.string().min(1, "Notes are required"),
 });
 
+// creates a new member
 export async function POST(request: NextRequest) {
   const session = await getServerSession(authOptions);
   if (!session || !session.user) return NextResponse.json({}, { status: 401 });
@@ -35,6 +36,7 @@ export async function POST(request: NextRequest) {
   return NextResponse.json(newMember, { status: 201 });
 }
 
+//Get's members of session user and notes associated with the member
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
@@ -53,7 +55,11 @@ export async function GET(request: NextRequest) {
         createdBy: userEmail,
       },
       include: {
-        notes: true,
+        notes: {
+          where: {
+            authorId: userEmail,
+          },
+        },
       },
     });
 

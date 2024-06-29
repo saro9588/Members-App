@@ -3,6 +3,7 @@ import prisma from "@/prisma/client";
 import authOptions from "@/app/auth/authOptions";
 import { getServerSession } from "next-auth";
 
+//creates a note for a previously created member
 export async function POST(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -28,6 +29,7 @@ export async function POST(
   return NextResponse.json(note, { status: 201 });
 }
 
+// Delete a member and notes associated with the member
 export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
