@@ -38,12 +38,8 @@ export async function POST(request: NextRequest) {
 export async function GET(request: NextRequest) {
   try {
     const session = await getServerSession(authOptions);
-    if (!session || !session.user) {
+    if (!session || !session.user || !session.user.email) {
       console.error("No session or user found");
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-    if (!session.user.email) {
-      console.error("User email not found in session");
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
@@ -53,7 +49,11 @@ export async function GET(request: NextRequest) {
         createdBy: userEmail,
       },
       include: {
-        notes: true,
+        notes: {
+          where: {
+            authorId: userEmail,
+          },
+        },
       },
     });
 
