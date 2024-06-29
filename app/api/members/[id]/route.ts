@@ -24,6 +24,7 @@ export async function POST(
     data: {
       authorId: member.id,
       description: body.description,
+      createdBy: member.createdBy,
     },
   });
   return NextResponse.json(note, { status: 201 });
