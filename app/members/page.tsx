@@ -7,7 +7,12 @@ import authOptions from "../auth/authOptions";
 const MembersPage = async () => {
   let session = null;
   let members: ({
-    notes: { id: string; description: string; authorId: string }[];
+    notes: {
+      id: string;
+      description: string;
+      authorId: string;
+      createdBy: string;
+    }[];
   } & {
     id: string;
     firstname: string;
