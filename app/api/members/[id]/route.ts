@@ -33,14 +33,21 @@ export async function DELETE(
   { params }: { params: { id: string } }
 ) {
   const session = await getServerSession(authOptions);
-  if (!session) return NextResponse.json({}, { status: 401 });
+  if (!session || !session.user || !session.user.email) {
+    return NextResponse.json({}, { status: 401 });
+  }
 
+  const userEmail = session.user.email;
   const member = await prisma.member.findUnique({
     where: { id: params.id },
   });
 
   if (!member) {
     return NextResponse.json({ error: "Member not found" }, { status: 404 });
+  }
+
+  if (member.createdBy !== userEmail) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 403 });
   }
 
   await prisma.member.delete({
