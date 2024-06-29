@@ -4,7 +4,6 @@ import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
 import { Member, Note } from "@prisma/client";
 import { Session } from "next-auth";
-import { useRouter } from "next/router";
 
 interface MembersProps {
   members: (Member & { notes: Note[] })[];
@@ -17,7 +16,6 @@ const Members: React.FC<MembersProps> = ({
 }) => {
   const [members, setMembers] =
     useState<(Member & { notes: Note[] })[]>(initialMembers);
-  const router = useRouter();
 
   const handleDelete = async (memberId: string) => {
     const res = await fetch(`/api/members/${memberId}`, {
