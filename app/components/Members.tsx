@@ -21,7 +21,8 @@ const Members: React.FC<MembersProps> = ({
     const res = await fetch(`/api/members/${memberId}`, {
       method: "DELETE",
     });
-
+    console.log(memberId);
+    console.log(res);
     if (res.ok) {
       setMembers(members.filter((member) => member.id !== memberId));
     } else {
