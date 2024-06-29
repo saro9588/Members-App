@@ -42,6 +42,7 @@ const Members: React.FC<MembersProps> = ({
               <Table.ColumnHeaderCell>Sign Up Date</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Info</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Created By</Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
 
@@ -55,6 +56,7 @@ const Members: React.FC<MembersProps> = ({
                   {new Date(member.createdAt).toDateString()}
                 </Table.Cell>
                 <Table.Cell>{member.info}</Table.Cell>
+                <Table.Cell>{member.createdBy}</Table.Cell>
                 <Table.Cell>
                   {member.notes.length > 0 ? (
                     member.notes.map((note) => (
