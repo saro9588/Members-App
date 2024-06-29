@@ -20,13 +20,15 @@ model Member {
 }
 
 model Note {
-  id          String @id @default(uuid())
+  id          String  @id @default(uuid())
   description String
   authorId    String
-  author      Member @relation(fields: [authorId], references: [id], onDelete: Cascade)
+  createdBy   String  
+  author      Member  @relation(fields: [authorId], references: [id], onDelete: Cascade)
 
   @@index([authorId])
 }
+
 
 model Account {
   id                String  @id @default(cuid())
