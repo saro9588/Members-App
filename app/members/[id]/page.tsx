@@ -20,8 +20,6 @@ export default async function Page({ params }: Props) {
     where: { id: note.authorId },
   });
   if (!member) notFound();
-  if (note.authorId !== member.id)
-    throw new Error("Note author does not match member");
 
   return (
     <div>

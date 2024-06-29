@@ -27,8 +27,11 @@ const CreateNoteForm = ({ id }: { id: number }) => {
     setIsLoading(true);
     try {
       const { data: newNote } = await axios.post(`/api/members/${id}/`, data);
-
-      router.push(`/members/${newNote.id}/`);
+      if (id !== newNote.id) {
+        router.push("");
+      } else {
+        router.push(`/members/${newNote.id}/`);
+      }
     } catch (error) {
       console.error(error);
     } finally {
