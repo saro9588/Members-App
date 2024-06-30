@@ -62,3 +62,32 @@ export async function DELETE(
     { status: 200 }
   );
 }
+
+//Get notes of session user and notes associated with the member
+export async function GET(request: NextRequest) {
+  try {
+    const session = await getServerSession(authOptions);
+    if (!session || !session.user || !session.user.email) {
+      console.error("No session or user found");
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const userEmail = session.user.email;
+    const note = await prisma.note.findMany({
+      where: {
+        createdBy: userEmail,
+      },
+    });
+    if (note.some((note) => note.createdBy !== userEmail)) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
+    return NextResponse.json(note, { status: 200 });
+  } catch (error) {
+    console.error("Error fetching members:", error);
+    return NextResponse.json(
+      { error: "Internal Server Error" },
+      { status: 500 }
+    );
+  }
+}
