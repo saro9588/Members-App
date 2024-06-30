@@ -31,7 +31,6 @@ React.
 NextJS.
 TypeScript.
 Prisma & PostgreSQL.
-MySql.
 
 ## Deploy on Vercel
 
