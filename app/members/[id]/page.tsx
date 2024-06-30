@@ -25,7 +25,7 @@ export default async function Page({ params }: Props) {
   if (!member) notFound();
 
   return (
-    <div>
+    <div className="max-w-xl">
       <h1 style={{ fontWeight: "bold" }}>Member detailed notes</h1>
       <Box mb="5">
         <NoteDetails note={note} />
