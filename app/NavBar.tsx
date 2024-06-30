@@ -27,14 +27,12 @@ const NavBar = () => {
             <Link href="/">
               <AiFillEdit />
             </Link>
-            <NavLinks />
-          </Flex>
-          <Flex align="center" gap="3">
             <Link href="/members/new">
               <Button variant="soft">
                 <AiOutlinePlus />
               </Button>
             </Link>
+            <NavLinks />
           </Flex>
           <Flex>
             <Box>
@@ -58,6 +56,7 @@ const NavLinks = () => {
     { label: "Log In", href: "/login" },
     { label: "Dashboard", href: "/", authRequired: true },
     { label: "New Member", href: "/members/new", authRequired: true },
+    { label: <AiOutlinePlus />, href: "/members/new", authRequired: true },
     { label: "Members", href: "/members", authRequired: true },
   ];
   const filteredLinks = links.filter(
