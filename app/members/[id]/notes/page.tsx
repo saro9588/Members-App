@@ -8,7 +8,7 @@ const MemberNoteForm = ({ params }: Props) => {
   return (
     <>
       <div className="grid grid-col-1 mx-auto max-w-screen-lg gap-2">
-        <p>Member Notes</p>
+        <h1 style={{ fontWeight: "bold" }}>Member Notes</h1>
         <CreateNoteForm id={params.id} />
       </div>
     </>

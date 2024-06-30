@@ -8,7 +8,7 @@ export default function Home() {
     <>
       <div className="grid grid-cols-1 gap-2 mx-auto max-w-screen-lg">
         <Flex align="center" gap="1">
-          <h1>Welcome</h1>
+          <h1 style={{ fontWeight: "bold" }}>Welcome</h1>
           <SessionUser />!
         </Flex>
         <p>
