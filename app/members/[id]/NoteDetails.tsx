@@ -4,7 +4,7 @@ import React from "react";
 
 const NoteDetails = ({ note }: { note: note }) => {
   return (
-    <div className="mx-auto max-w-screen-lg gap-2">
+    <div className="">
       <div>Created By: {note.createdBy}</div>
       <div>Description: {note.description}</div>
     </div>
