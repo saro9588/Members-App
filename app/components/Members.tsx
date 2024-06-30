@@ -58,7 +58,7 @@ const Members: React.FC<MembersProps> = ({
                 <Table.Cell>
                   {member.notes.length > 0 ? (
                     member.notes.map((note) =>
-                      note.createdBy === session?.user?.email ? (
+                      note.authorId === member.id ? (
                         <div key={note.id}>
                           <Button>
                             <Link href={`/members/${note.id}`}>More</Link>
