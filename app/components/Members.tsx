@@ -31,7 +31,7 @@ const Members: React.FC<MembersProps> = ({
 
   return (
     <>
-      <div className="max-w-xl">
+      <div className="px-5">
         <h1>Members List</h1>
         <Table.Root>
           <Table.Header>
