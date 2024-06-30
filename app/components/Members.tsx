@@ -31,7 +31,7 @@ const Members: React.FC<MembersProps> = ({
 
   return (
     <>
-      <div className="px-5">
+      <div className="mx-auto max-w-screen-lg gap-2">
         <h1>Members List</h1>
         <Table.Root>
           <Table.Header>
