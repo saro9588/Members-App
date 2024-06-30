@@ -49,6 +49,13 @@ const NavBar = () => {
               </>
             )}
           </Flex>
+          <Flex align="center" gap="3">
+            <Link href="/members/new">
+              <Button variant="soft">
+                <AiOutlinePlus />
+              </Button>
+            </Link>
+          </Flex>
           <Flex>
             <Box>
               <SessionUser />
