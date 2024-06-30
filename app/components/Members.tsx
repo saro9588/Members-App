@@ -5,17 +5,17 @@ import Link from "next/link";
 import { member, note } from "@prisma/client";
 import { Session } from "next-auth";
 
-interface membersProps {
+interface MembersProps {
   members: (member & { notes: note[] })[];
   session: Session | null;
 }
 
-const members: React.FC<membersProps> = ({
-  members: initialmembers,
+const Members: React.FC<MembersProps> = ({
+  members: initialMembers,
   session,
 }) => {
   const [members, setMembers] =
-    useState<(member & { notes: note[] })[]>(initialmembers);
+    useState<(member & { notes: note[] })[]>(initialMembers);
 
   const handleDelete = async (memberId: string) => {
     const res = await fetch(`/api/members/${memberId}`, {
@@ -34,7 +34,7 @@ const members: React.FC<membersProps> = ({
   return (
     <>
       <div>
-        <h1>members List</h1>
+        <h1>Members List</h1>
         <Table.Root>
           <Table.Header>
             <Table.Row>
@@ -69,7 +69,7 @@ const members: React.FC<membersProps> = ({
                   ) : (
                     <Button>
                       <Link href={`/members/${member.id}/notes`}>
-                        Take notes
+                        Take Notes
                       </Link>
                     </Button>
                   )}
@@ -90,4 +90,4 @@ const members: React.FC<membersProps> = ({
   );
 };
 
-export default members;
+export default Members;
