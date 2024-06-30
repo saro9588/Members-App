@@ -19,6 +19,8 @@ import {
 import { CiMenuBurger } from "react-icons/ci";
 
 const NavBar = () => {
+  const { data: session } = useSession();
+
   return (
     <nav className="border-b mb-5 px-5 py-3">
       <Container>
@@ -27,12 +29,14 @@ const NavBar = () => {
             <Link href="/">
               <AiFillEdit />
             </Link>
-            <Link href="/members/new">
-              <Button variant="soft">
-                <AiOutlinePlus />
-              </Button>
-            </Link>
             <NavLinks />
+            {session && (
+              <Link href="/members/new">
+                <Button variant="soft">
+                  <AiOutlinePlus />
+                </Button>
+              </Link>
+            )}
           </Flex>
           <Flex>
             <Box>
@@ -48,7 +52,7 @@ const NavBar = () => {
 
 const NavLinks = () => {
   const currentPath = usePathname();
-  const { status } = useSession();
+  const { data: session } = useSession();
   const [menuOpen, setMenuOpen] = useState(false);
 
   const links = [
@@ -56,16 +60,16 @@ const NavLinks = () => {
     { label: "Log In", href: "/login" },
     { label: "Dashboard", href: "/", authRequired: true },
     { label: "New Member", href: "/members/new", authRequired: true },
-    { label: <AiOutlinePlus />, href: "/members/new", authRequired: true },
     { label: "Members", href: "/members", authRequired: true },
   ];
+
   const filteredLinks = links.filter(
     (link) =>
       !(
         (link.label === "Create Account" || link.label === "Log In") &&
-        status === "authenticated"
+        session
       ) &&
-      (!link.authRequired || status === "authenticated")
+      (!link.authRequired || session)
   );
 
   const handleLinkClick = () => {
@@ -104,16 +108,15 @@ const NavLinks = () => {
 };
 
 const AuthStatus = () => {
-  const { status } = useSession();
+  const { data: session } = useSession();
 
   return (
     <Box>
-      {status === "authenticated" && (
+      {session ? (
         <Link className="nav-link" href="/api/auth/signout">
           Log Out
         </Link>
-      )}
-      {status === "unauthenticated" && (
+      ) : (
         <Link href="/api/auth/signin">Login</Link>
       )}
     </Box>
@@ -121,9 +124,9 @@ const AuthStatus = () => {
 };
 
 const SessionUser = () => {
-  const { data, status } = useSession();
+  const { data: session } = useSession();
 
-  return <Box>{status === "authenticated" && <p>{data.user?.email}</p>}</Box>;
+  return <Box>{session && <p>{session.user?.email}</p>}</Box>;
 };
 
 export default NavBar;
