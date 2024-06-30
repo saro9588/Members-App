@@ -16,14 +16,13 @@ export default async function Page({ params }: Props) {
   const note = await prisma.note.findUnique({
     where: { id: params.id },
   });
-  if (!note) notFound();
+
+  if (!note || note.createdBy !== session?.user?.email) notFound();
 
   const member = await prisma.member.findUnique({
     where: { id: note.authorId },
   });
   if (!member) notFound();
-  if (note.authorId !== member.id && member.createdBy !== session?.user?.email)
-    notFound();
 
   return (
     <div>
