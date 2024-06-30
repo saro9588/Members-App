@@ -57,13 +57,15 @@ const Members: React.FC<MembersProps> = ({
                 <Table.Cell>{member.info}</Table.Cell>
                 <Table.Cell>
                   {member.notes.length > 0 ? (
-                    member.notes.map((note) => (
-                      <div key={note.id}>
-                        <Button>
-                          <Link href={`/members/${note.id}`}>More</Link>
-                        </Button>
-                      </div>
-                    ))
+                    member.notes.map((note) =>
+                      note.createdBy === session?.user?.email ? (
+                        <div key={note.id}>
+                          <Button>
+                            <Link href={`/members/${note.id}`}>More</Link>
+                          </Button>
+                        </div>
+                      ) : null
+                    )
                   ) : (
                     <Button>
                       <Link href={`/members/${member.id}/notes`}>

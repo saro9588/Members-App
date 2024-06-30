@@ -24,7 +24,7 @@ export async function POST(
     data: {
       authorId: member.id,
       description: body.description,
-      createdBy: member.createdBy,
+      createdBy: member.id,
     },
   });
   return NextResponse.json(note, { status: 201 });
@@ -73,9 +73,17 @@ export async function GET(request: NextRequest) {
     }
 
     const userEmail = session.user.email;
+
+    const members = await prisma.member.findMany({
+      where: {
+        createdBy: userEmail,
+      },
+    });
+
     const note = await prisma.note.findMany({
       where: {
         createdBy: userEmail,
+        authorId: userEmail,
       },
     });
     if (note.some((note) => note.createdBy !== userEmail)) {

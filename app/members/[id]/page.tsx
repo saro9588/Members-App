@@ -20,7 +20,7 @@ export default async function Page({ params }: Props) {
     where: { id: note.authorId },
   });
   if (!member) notFound();
-  if (note.createdBy !== member.createdBy) notFound();
+  if (note.authorId !== member.createdBy) notFound();
 
   return (
     <div>
