@@ -21,3 +21,6 @@ body {
     @apply text-zinc-500 hover:text-zinc-800;
   }
 }
+button {
+  cursor: pointer;
+}

@@ -15,7 +15,7 @@ export default function Home() {
           This App is designed for creating members, adding and editing notes
           unique to each member.
         </p>
-        <div className="flex flex-col gap-2 items-start">
+        <div className="flex flex-row gap-2 items-start">
           <Link href="/members">
             <Button size="2">Members</Button>
           </Link>
