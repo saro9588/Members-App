@@ -26,18 +26,13 @@ export default async function Page({ params }: Props) {
 
   return (
     <div>
-      <h1>Member detailed notes</h1>
-      <Grid columns={{ initial: "1", md: "2" }} gap="5" mb="5">
-        <Box>
-          <NoteDetails note={note} />
-        </Box>
-        <Box>
-          <EditNoteButton noteId={note.id} />
-        </Box>
-      </Grid>
-      <Button>
-        <Link href="/members">All Members</Link>
-      </Button>
+      <h1 style={{ fontWeight: "bold" }}>Member detailed notes</h1>
+      <Box mb="5">
+        <NoteDetails note={note} />
+      </Box>
+      <Box>
+        <EditNoteButton noteId={note.id} />
+      </Box>
     </div>
   );
 }
