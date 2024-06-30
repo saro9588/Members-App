@@ -4,10 +4,10 @@ import React from "react";
 
 const NoteDetails = ({ note }: { note: note }) => {
   return (
-    <Card className="max-w-xl px-2" mt="4">
-      <Box>Created By: {note.createdBy}</Box>
-      <Box>Description: {note.description}</Box>
-    </Card>
+    <div className="max-w-xl px-2">
+      <div>Created By: {note.createdBy}</div>
+      <div>Description: {note.description}</div>
+    </div>
   );
 };
 
