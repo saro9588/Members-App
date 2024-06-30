@@ -45,7 +45,6 @@ export async function GET(request: NextRequest) {
       console.error("No session or user found");
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-
     const userEmail = session.user.email;
     const members = await prisma.member.findMany({
       where: {
@@ -59,7 +58,6 @@ export async function GET(request: NextRequest) {
         },
       },
     });
-
     return NextResponse.json(members, { status: 200 });
   } catch (error) {
     console.error("Error fetching members:", error);

@@ -3,7 +3,7 @@ import prisma from "@/prisma/client";
 import authOptions from "@/app/auth/authOptions";
 import { getServerSession } from "next-auth";
 
-//creates a note for a previously created member
+//create a note for a previously created member
 export async function POST(
   request: NextRequest,
   { params }: { params: { id: string } }
@@ -61,41 +61,4 @@ export async function DELETE(
     { message: "Member deleted successfully" },
     { status: 200 }
   );
-}
-
-//Get notes of session user and notes associated with the member
-export async function GET(request: NextRequest) {
-  try {
-    const session = await getServerSession(authOptions);
-    if (!session || !session.user || !session.user.email) {
-      console.error("No session or user found");
-      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
-    }
-
-    const userEmail = session.user.email;
-
-    const members = await prisma.member.findMany({
-      where: {
-        createdBy: userEmail,
-      },
-    });
-
-    const note = await prisma.note.findMany({
-      where: {
-        createdBy: userEmail,
-        authorId: userEmail,
-      },
-    });
-    if (note.some((note) => note.createdBy !== userEmail)) {
-      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
-    }
-
-    return NextResponse.json(note, { status: 200 });
-  } catch (error) {
-    console.error("Error fetching members:", error);
-    return NextResponse.json(
-      { error: "Internal Server Error" },
-      { status: 500 }
-    );
-  }
 }
