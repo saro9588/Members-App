@@ -21,11 +21,11 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="mx-auto">
+      <body className="container">
         <AuthProvider>
           <Theme radius="large">
             <NavBar />
-            <main className="container">{children}</main>
+            <main className="">{children}</main>
           </Theme>
         </AuthProvider>
       </body>
