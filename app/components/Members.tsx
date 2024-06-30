@@ -21,8 +21,6 @@ const Members: React.FC<MembersProps> = ({
     const res = await fetch(`/api/members/${memberId}`, {
       method: "DELETE",
     });
-    console.log(memberId);
-    console.log(res);
     if (res.ok) {
       setMembers(members.filter((member) => member.id !== memberId));
     } else {
@@ -56,35 +54,36 @@ const Members: React.FC<MembersProps> = ({
                 </Table.Cell>
                 <Table.Cell>{member.info}</Table.Cell>
                 <Table.Cell>
-                  {member.notes.length > 0 ? (
-                    member.notes.map((note) =>
-                      note.authorId === member.id ? (
-                        <div key={note.id}>
-                          <Button>
-                            <Link href={`/members/${note.id}`}>More</Link>
-                          </Button>
-                        </div>
-                      ) : null
-                    )
-                  ) : (
-                    <Button>
-                      <Link href={`/members/${member.id}/notes`}>
-                        Take Notes
-                      </Link>
+                  <div className="flex gap-2">
+                    {member.notes.length > 0 ? (
+                      member.notes.map((note) =>
+                        note.authorId === member.id ? (
+                          <div key={note.id}>
+                            <Button className="w-24">
+                              <Link href={`/members/${note.id}`}>More</Link>
+                            </Button>
+                          </div>
+                        ) : null
+                      )
+                    ) : (
+                      <Button className="w-24">
+                        <Link href={`/members/${member.id}/notes`}>
+                          Take Notes
+                        </Link>
+                      </Button>
+                    )}
+                    <Button
+                      className="w-24"
+                      onClick={() => handleDelete(member.id)}
+                    >
+                      Delete
                     </Button>
-                  )}
-                  <Button onClick={() => handleDelete(member.id)}>
-                    Delete
-                  </Button>
+                  </div>
                 </Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
         </Table.Root>
-
-        <Button>
-          <Link href="/">Dashboard</Link>
-        </Button>
       </div>
     </>
   );

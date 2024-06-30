@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import { AiFillEdit } from "react-icons/ai";
+import { AiFillEdit, AiOutlinePlus } from "react-icons/ai";
 import { usePathname } from "next/navigation";
 import classnames from "classnames";
 import { useSession } from "next-auth/react";
@@ -28,6 +28,13 @@ const NavBar = () => {
               <AiFillEdit />
             </Link>
             <NavLinks />
+          </Flex>
+          <Flex align="center" gap="3">
+            <Link href="/members/new">
+              <Button variant="soft">
+                <AiOutlinePlus />
+              </Button>
+            </Link>
           </Flex>
           <Flex>
             <Box>
