@@ -3,7 +3,6 @@ import { z } from "zod";
 import prisma from "@/prisma/client";
 import { getServerSession } from "next-auth";
 import authOptions from "@/app/auth/authOptions";
-import { memo } from "react";
 
 const createUserSchema = z.object({
   firstName: z.string().min(1).max(25),

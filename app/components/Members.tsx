@@ -2,20 +2,20 @@
 import React, { useState } from "react";
 import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
-import { Member, Note } from "@prisma/client";
+import { member, note } from "@prisma/client";
 import { Session } from "next-auth";
 
-interface MembersProps {
-  members: (Member & { notes: Note[] })[];
+interface membersProps {
+  members: (member & { notes: note[] })[];
   session: Session | null;
 }
 
-const Members: React.FC<MembersProps> = ({
-  members: initialMembers,
+const members: React.FC<membersProps> = ({
+  members: initialmembers,
   session,
 }) => {
   const [members, setMembers] =
-    useState<(Member & { notes: Note[] })[]>(initialMembers);
+    useState<(member & { notes: note[] })[]>(initialmembers);
 
   const handleDelete = async (memberId: string) => {
     const res = await fetch(`/api/members/${memberId}`, {
@@ -34,7 +34,7 @@ const Members: React.FC<MembersProps> = ({
   return (
     <>
       <div>
-        <h1>Members List</h1>
+        <h1>members List</h1>
         <Table.Root>
           <Table.Header>
             <Table.Row>
@@ -69,7 +69,7 @@ const Members: React.FC<MembersProps> = ({
                   ) : (
                     <Button>
                       <Link href={`/members/${member.id}/notes`}>
-                        Take Notes
+                        Take notes
                       </Link>
                     </Button>
                   )}
@@ -90,4 +90,4 @@ const Members: React.FC<MembersProps> = ({
   );
 };
 
-export default Members;
+export default members;

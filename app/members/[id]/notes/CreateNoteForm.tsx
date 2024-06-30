@@ -4,22 +4,16 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-
-interface MemberNote {
-  id: string;
-  description: string;
-  authorId: string;
-}
+import { note } from "@prisma/client";
 
 const CreateNoteForm = ({ id }: { id: string }) => {
   const router = useRouter();
-
   const {
     register,
     control,
     handleSubmit,
     formState: { errors },
-  } = useForm<MemberNote>({});
+  } = useForm<note>({});
 
   const [isLoading, setIsLoading] = useState(false);
 
