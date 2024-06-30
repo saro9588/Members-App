@@ -5,10 +5,10 @@ import React from "react";
 const NoteDetails = ({ note }: { note: Note }) => {
   return (
     <Card className="max-w-xl" mt="4">
-      <Box>Note ID: {note.id}</Box>
+      <Box>Created By: {note.createdBy}</Box>
       <Box>Description: {note.description}</Box>
+      <Box>Note ID: {note.id}</Box>
       <Box>Author ID: {note.authorId}</Box>
-      <Box>Author ID: {note.createdBy}</Box>
     </Card>
   );
 };

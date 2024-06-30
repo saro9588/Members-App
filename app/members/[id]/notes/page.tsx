@@ -2,7 +2,7 @@ import "easymde/dist/easymde.min.css";
 import CreateNoteForm from "./CreateNoteForm";
 
 interface Props {
-  params: { id: number };
+  params: { id: string };
 }
 const MemberNoteForm = ({ params }: Props) => {
   return (

@@ -6,12 +6,12 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 
 interface MemberNote {
-  id: number;
+  id: string;
   description: string;
-  authorId: number;
+  authorId: string;
 }
 
-const CreateNoteForm = ({ id }: { id: number }) => {
+const CreateNoteForm = ({ id }: { id: string }) => {
   const router = useRouter();
 
   const {
