@@ -8,7 +8,7 @@ const NewMemberPage = () => {
   return (
     <>
       <div className="grid grid-col-1 mx-auto max-w-screen-lg gap-2">
-        <p>Create a New Member</p>
+        <h1 style={{ fontWeight: "bold" }}>Create a New Member</h1>
         <NewMemberForm />
       </div>
     </>

@@ -32,7 +32,7 @@ const Members: React.FC<MembersProps> = ({
   return (
     <>
       <div className="mx-auto max-w-screen-lg gap-2">
-        <h1>Members List</h1>
+        <h1 style={{ fontWeight: "bold" }}>Members List</h1>
         <Table.Root>
           <Table.Header>
             <Table.Row>
@@ -59,21 +59,21 @@ const Members: React.FC<MembersProps> = ({
                       member.notes.map((note) =>
                         note.authorId === member.id ? (
                           <div key={note.id}>
-                            <Button className="w-24">
+                            <Button className="w-28">
                               <Link href={`/members/${note.id}`}>More</Link>
                             </Button>
                           </div>
                         ) : null
                       )
                     ) : (
-                      <Button className="w-24">
+                      <Button className="w-28">
                         <Link href={`/members/${member.id}/notes`}>
                           Take Notes
                         </Link>
                       </Button>
                     )}
                     <Button
-                      className="w-24"
+                      className="w-28"
                       onClick={() => handleDelete(member.id)}
                     >
                       Delete
