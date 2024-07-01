@@ -38,7 +38,7 @@ const Members: React.FC<MembersProps> = ({
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell>Full name</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Sign Up Date</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Registered</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Info</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Actions</Table.ColumnHeaderCell>
             </Table.Row>
@@ -54,7 +54,6 @@ const Members: React.FC<MembersProps> = ({
                   {new Date(member.createdAt).toLocaleDateString("en-US", {
                     year: "numeric",
                     month: "2-digit",
-                    day: "2-digit",
                   })}
                 </Table.Cell>
                 <Table.Cell>{member.info}</Table.Cell>
