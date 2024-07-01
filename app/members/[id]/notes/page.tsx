@@ -1,6 +1,5 @@
 import "easymde/dist/easymde.min.css";
-import CreateNoteForm from "./CreateNoteForm";
-
+import NoteForm from "../../_components/NoteForm";
 interface Props {
   params: { id: string };
 }
@@ -9,7 +8,7 @@ const MemberNoteForm = ({ params }: Props) => {
     <>
       <div className="grid grid-col-1 mx-auto max-w-screen-lg gap-2">
         <h1 style={{ fontWeight: "bold" }}>Member Notes</h1>
-        <CreateNoteForm id={params.id} />
+        <NoteForm id={params.id} />
       </div>
     </>
   );

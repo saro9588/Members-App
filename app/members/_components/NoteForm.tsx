@@ -6,7 +6,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { note } from "@prisma/client";
 
-const CreateNoteForm = ({ id }: { id: string }) => {
+const NoteForm = ({ id }: { id: string }) => {
   const router = useRouter();
   const {
     register,
@@ -44,4 +44,4 @@ const CreateNoteForm = ({ id }: { id: string }) => {
 
 export const revalidate = 0;
 export const dynamic = "force-dynamic";
-export default CreateNoteForm;
+export default NoteForm;

@@ -4,10 +4,10 @@ import React from "react";
 
 const NoteDetails = ({ note }: { note: note }) => {
   return (
-    <div className="">
-      <div>Created By: {note.createdBy}</div>
-      <div>Description: {note.description}</div>
-    </div>
+    <Card className="">
+      <Box>Created By: {note.createdBy}</Box>
+      <Box>Description: {note.description}</Box>
+    </Card>
   );
 };
 
