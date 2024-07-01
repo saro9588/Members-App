@@ -4,6 +4,7 @@ import { Button, Table } from "@radix-ui/themes";
 import Link from "next/link";
 import { member, note } from "@prisma/client";
 import { Session } from "next-auth";
+import { FaTrash, FaPencilAlt, FaInfoCircle } from "react-icons/fa";
 
 interface MembersProps {
   members: (member & { notes: note[] })[];
@@ -59,24 +60,23 @@ const Members: React.FC<MembersProps> = ({
                       member.notes.map((note) =>
                         note.authorId === member.id ? (
                           <div key={note.id}>
-                            <Button className="w-28">
-                              <Link href={`/members/${note.id}`}>More</Link>
-                            </Button>
+                            <Link href={`/members/${note.id}`}>
+                              <Button>
+                                <FaInfoCircle />
+                              </Button>
+                            </Link>
                           </div>
                         ) : null
                       )
                     ) : (
-                      <Button className="w-28">
-                        <Link href={`/members/${member.id}/notes`}>
-                          Take Notes
-                        </Link>
-                      </Button>
+                      <Link href={`/members/${member.id}/notes`}>
+                        <Button>
+                          <FaPencilAlt />
+                        </Button>
+                      </Link>
                     )}
-                    <Button
-                      className="w-28"
-                      onClick={() => handleDelete(member.id)}
-                    >
-                      Delete
+                    <Button onClick={() => handleDelete(member.id)}>
+                      <FaTrash />
                     </Button>
                   </div>
                 </Table.Cell>
