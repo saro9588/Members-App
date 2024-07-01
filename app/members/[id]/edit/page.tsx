@@ -8,7 +8,7 @@ interface Props {
   params: { id: string };
 }
 
-const EditNotePage = async (params: { id: string }) => {
+const EditNotePage = async ({ params }: Props) => {
   const session = await getServerSession();
   const note = await prisma.note.findUnique({
     where: { id: params.id },
