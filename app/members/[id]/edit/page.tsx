@@ -2,7 +2,6 @@ import NoteForm from "../../_components/NoteForm";
 import { notFound } from "next/navigation";
 import prisma from "@/prisma/client";
 import { getServerSession } from "next-auth";
-import { note } from "@prisma/client";
 
 interface Props {
   params: { id: string };
