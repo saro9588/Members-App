@@ -1,9 +1,14 @@
 import React from "react";
+import NoteForm from "../../_components/NoteForm";
 
-const EditNotePage = () => {
+interface Props {
+  params: { id: string };
+}
+
+const EditNotePage = (params: { id: string }) => {
   return (
     <div className="grid grid-col-1 mx-auto max-w-screen-lg gap-2">
-      <p>Page coming soon...</p>
+      <NoteForm id={params.id} />
     </div>
   );
 };
