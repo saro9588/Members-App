@@ -51,7 +51,11 @@ const Members: React.FC<MembersProps> = ({
                   {`${member.firstname} ${member.lastname}`}
                 </Table.RowHeaderCell>
                 <Table.Cell>
-                  {new Date(member.createdAt).toDateString()}
+                  {new Date(member.createdAt).toLocaleDateString("en-US", {
+                    year: "numeric",
+                    month: "2-digit",
+                    day: "2-digit",
+                  })}
                 </Table.Cell>
                 <Table.Cell>{member.info}</Table.Cell>
                 <Table.Cell>
