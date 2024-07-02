@@ -15,11 +15,9 @@ export async function POST(
   const member = await prisma.member.findUnique({
     where: { id: params.id },
   });
-
   if (!member) {
     return NextResponse.json({ error: "Member not found" }, { status: 404 });
   }
-
   const note = await prisma.note.create({
     data: {
       authorId: member.id,
@@ -61,4 +59,47 @@ export async function DELETE(
     { message: "Member deleted successfully" },
     { status: 200 }
   );
+}
+
+//update member note
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    console.log("Unauthorized: No session found");
+    return NextResponse.json({}, { status: 401 });
+  }
+  const body = await request.json();
+  const { description } = body;
+  try {
+    const note = await prisma.note.findUnique({
+      where: { id: params.id },
+    });
+    if (!note) {
+      return NextResponse.json({ error: "Note not found" }, { status: 404 });
+    }
+    const member = await prisma.member.findUnique({
+      where: { id: note.authorId },
+    });
+    if (!member) {
+      return NextResponse.json({ error: "Member not found" }, { status: 404 });
+    }
+    const updatedNote = await prisma.note.update({
+      where: {
+        id: note.id,
+      },
+      data: {
+        description: description,
+      },
+    });
+    return NextResponse.json(updatedNote, { status: 200 });
+  } catch (error) {
+    console.error("Error updating note:", error);
+    return NextResponse.json(
+      { error: "Internal server error" },
+      { status: 500 }
+    );
+  }
 }

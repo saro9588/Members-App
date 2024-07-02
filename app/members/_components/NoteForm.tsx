@@ -6,11 +6,10 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { note } from "@prisma/client";
 
-const NoteForm = ({ id }: { id: string }) => {
+const NoteForm = ({ id, note }: { id: string; note: note }) => {
   const router = useRouter();
   const {
     register,
-    control,
     handleSubmit,
     formState: { errors },
   } = useForm<note>({});
@@ -20,8 +19,17 @@ const NoteForm = ({ id }: { id: string }) => {
   const onSubmit = handleSubmit(async (data) => {
     setIsLoading(true);
     try {
-      const { data: newNote } = await axios.post(`/api/members/${id}/`, data);
-      router.push(`/members/${newNote.id}/`);
+      if (note && note.id !== "") {
+        await axios.patch(`/api/members/${note.id}`, {
+          id: note.id,
+          description: data.description,
+        });
+        router.push(`/members/${note.id}`);
+        router.refresh();
+      } else {
+        const { data: newNote } = await axios.post(`/api/members/${id}/`, data);
+        router.push(`/members/${newNote.id}/`);
+      }
     } catch (error) {
       console.error(error);
     } finally {
@@ -33,6 +41,7 @@ const NoteForm = ({ id }: { id: string }) => {
     <form className="max-w-xl" onSubmit={onSubmit}>
       <TextArea
         {...register("description", { required: "This is required." })}
+        defaultValue={note?.description}
         placeholder="Take notes..."
       />
       <Button color="indigo" variant="soft" type="submit" disabled={isLoading}>

@@ -8,7 +8,15 @@ const MemberNoteForm = ({ params }: Props) => {
     <>
       <div className="grid grid-col-1 mx-auto max-w-screen-lg gap-2">
         <h1 style={{ fontWeight: "bold" }}>Member Notes</h1>
-        <NoteForm id={params.id} />
+        <NoteForm
+          id={params.id}
+          note={{
+            id: "",
+            description: "",
+            authorId: "",
+            createdBy: "",
+          }}
+        />
       </div>
     </>
   );
