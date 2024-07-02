@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import prisma from "@/prisma/client";
 import authOptions from "@/app/auth/authOptions";
 import { getServerSession } from "next-auth";
+import { note } from "@prisma/client";
 
 //create a note for a previously created member
 export async function POST(
@@ -61,4 +62,43 @@ export async function DELETE(
     { message: "Member deleted successfully" },
     { status: 200 }
   );
+}
+
+export async function PATCH(
+  request: NextRequest,
+  { params }: { params: { id: string } }
+) {
+  const session = await getServerSession(authOptions);
+  if (!session) return NextResponse.json({}, { status: 401 });
+
+  const body = await request.json();
+  const { id, description } = body;
+  const member = await prisma.member.findUnique({
+    where: { id: params.id },
+    include: {
+      notes: true,
+    },
+  });
+
+  if (!member) {
+    return NextResponse.json({ error: "Member not found" }, { status: 404 });
+  }
+
+  const noteToUpdate = member.notes.find((note) => note.id === id);
+  if (!noteToUpdate) {
+    return NextResponse.json({ error: "Note not found" }, { status: 404 });
+  }
+
+  const updatedNote = await prisma.note.update({
+    where: {
+      id: id,
+    },
+    data: {
+      authorId: member.id,
+      description: description,
+      createdBy: member.createdBy,
+    },
+  });
+
+  return NextResponse.json(updatedNote, { status: 200 });
 }
