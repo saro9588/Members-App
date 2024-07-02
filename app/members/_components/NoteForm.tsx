@@ -20,7 +20,7 @@ const NoteForm = ({ id, note }: { id: string; note: note }) => {
     setIsLoading(true);
     try {
       if (note && note.id !== "") {
-        await axios.patch(`/api/members/${id}`, {
+        await axios.patch(`/api/members/${note.id}`, {
           id: note.id,
           description: data.description,
         });

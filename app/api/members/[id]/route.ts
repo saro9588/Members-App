@@ -4,20 +4,24 @@ import authOptions from "@/app/auth/authOptions";
 import { getServerSession } from "next-auth";
 import { note } from "@prisma/client";
 
-//create a note for a previously created member
+// Create a note for a previously created member
 export async function POST(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  console.log("POST request params:", params); // Log request params
   const session = await getServerSession(authOptions);
   if (!session) return NextResponse.json({}, { status: 401 });
 
   const body = await request.json();
+  console.log("POST request body:", body); // Log request body
+
   const member = await prisma.member.findUnique({
     where: { id: params.id },
   });
 
   if (!member) {
+    console.log("Member not found for ID:", params.id); // Log member not found
     return NextResponse.json({ error: "Member not found" }, { status: 404 });
   }
 
@@ -28,6 +32,7 @@ export async function POST(
       createdBy: member.createdBy,
     },
   });
+
   return NextResponse.json(note, { status: 201 });
 }
 
@@ -36,6 +41,7 @@ export async function DELETE(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  console.log("DELETE request params:", params); // Log request params
   const session = await getServerSession(authOptions);
   if (!session || !session.user || !session.user.email) {
     return NextResponse.json({}, { status: 401 });
@@ -47,6 +53,7 @@ export async function DELETE(
   });
 
   if (!member) {
+    console.log("Member not found for ID:", params.id); // Log member not found
     return NextResponse.json({ error: "Member not found" }, { status: 404 });
   }
 
@@ -64,14 +71,18 @@ export async function DELETE(
   );
 }
 
+// Update a note for a previously created member
 export async function PATCH(
   request: NextRequest,
   { params }: { params: { id: string } }
 ) {
+  console.log("PATCH request params:", params); // Log request params
   const session = await getServerSession(authOptions);
   if (!session) return NextResponse.json({}, { status: 401 });
 
   const body = await request.json();
+  console.log("PATCH request body:", body); // Log request body
+
   const { id, description } = body;
   const member = await prisma.member.findUnique({
     where: { id: params.id },
@@ -81,11 +92,13 @@ export async function PATCH(
   });
 
   if (!member) {
+    console.log("Member not found for ID:", params.id); // Log member not found
     return NextResponse.json({ error: "Member not found" }, { status: 404 });
   }
 
   const noteToUpdate = member.notes.find((note) => note.id === id);
   if (!noteToUpdate) {
+    console.log("Note not found for ID:", id); // Log note not found
     return NextResponse.json({ error: "Note not found" }, { status: 404 });
   }
 
