@@ -21,9 +21,8 @@ const NoteForm = ({ id, note }: { id: string; note: note }) => {
     setIsLoading(true);
     try {
       if (note) await axios.patch("/api/members/" + note.id, data);
-      {
+      else {
         const { data: newNote } = await axios.post(`/api/members/${id}/`, data);
-        router.push(`/members/${newNote.id}/`);
         router.push(`/members/${newNote.id}/`);
       }
     } catch (error) {
