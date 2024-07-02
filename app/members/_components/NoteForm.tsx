@@ -24,6 +24,7 @@ const NoteForm = ({ id, note }: { id: string; note: note }) => {
           id: note.id,
           description: data.description,
         });
+        router.push(`/members/${note.id}`);
       } else {
         const { data: newNote } = await axios.post(`/api/members/${id}/`, data);
         router.push(`/members/${newNote.id}/`);
