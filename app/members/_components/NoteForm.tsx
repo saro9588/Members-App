@@ -4,17 +4,17 @@ import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import { note as NoteType } from "@prisma/client";
+import { note } from "@prisma/client";
 
-const NoteForm = ({ id, note }: { id: string; note: NoteType }) => {
+const NoteForm = ({ id, note }: { id: string; note: note }) => {
   const router = useRouter();
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<NoteType>({});
+  } = useForm<note>({});
+
   const [isLoading, setIsLoading] = useState(false);
-  const [noteState, setNoteState] = useState(note);
 
   const onSubmit = handleSubmit(async (data) => {
     setIsLoading(true);
@@ -24,15 +24,12 @@ const NoteForm = ({ id, note }: { id: string; note: NoteType }) => {
           id: note.id,
           description: data.description,
         });
-        setNoteState((prevNote) => ({
-          ...prevNote,
-          description: data.description,
-        }));
+        router.push(`/members/${note.id}`);
+        router.refresh();
       } else {
         const { data: newNote } = await axios.post(`/api/members/${id}/`, data);
-        setNoteState(newNote);
+        router.push(`/members/${newNote.id}/`);
       }
-      router.push(`/members/${noteState.id || id}`);
     } catch (error) {
       console.error(error);
     } finally {
@@ -44,7 +41,7 @@ const NoteForm = ({ id, note }: { id: string; note: NoteType }) => {
     <form className="max-w-xl" onSubmit={onSubmit}>
       <TextArea
         {...register("description", { required: "This is required." })}
-        defaultValue={noteState?.description}
+        defaultValue={note?.description}
         placeholder="Take notes..."
       />
       <Button color="indigo" variant="soft" type="submit" disabled={isLoading}>
