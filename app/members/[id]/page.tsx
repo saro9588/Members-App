@@ -26,7 +26,7 @@ export default async function Page({ params }: Props) {
 
   return (
     <div className="mx-auto max-w-screen-lg gap-2">
-      <h1 style={{ fontWeight: "bold" }}>Member detailed notes</h1>
+      <h1 style={{ fontWeight: "bold" }}>Member notes</h1>
       <Box mb="5">
         <NoteDetails note={note} />
       </Box>
