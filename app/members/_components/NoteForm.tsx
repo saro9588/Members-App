@@ -38,7 +38,7 @@ const NoteForm = ({ id, note }: { id: string; note: note }) => {
   });
 
   return (
-    <form className="max-w-xl" onSubmit={onSubmit}>
+    <form className="max-w-xl space-y-3 mb-5" onSubmit={onSubmit}>
       <TextArea
         {...register("description", { required: "This is required." })}
         defaultValue={note?.description}
