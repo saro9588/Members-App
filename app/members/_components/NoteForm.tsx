@@ -10,7 +10,6 @@ const NoteForm = ({ id, note }: { id: string; note: note }) => {
   const router = useRouter();
   const {
     register,
-    control,
     handleSubmit,
     formState: { errors },
   } = useForm<note>({});
@@ -20,10 +19,14 @@ const NoteForm = ({ id, note }: { id: string; note: note }) => {
   const onSubmit = handleSubmit(async (data) => {
     setIsLoading(true);
     try {
-      if (note) await axios.patch("/api/members/" + note.id, data);
-      else {
+      if (note && note.id !== "") {
+        await axios.patch(`/api/members/${note.id}`, {
+          id: note.id,
+          description: data.description,
+        });
+      } else {
         const { data: newNote } = await axios.post(`/api/members/${id}/`, data);
-        router.push(`/members/${newNote.id}/`);
+        router.push(`/members/${newNote.authorId}/`);
       }
     } catch (error) {
       console.error(error);
