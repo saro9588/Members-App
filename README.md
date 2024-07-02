@@ -21,10 +21,16 @@ This app can serve other types of users as well. You can create a user, store sp
 ## Issues:
 No issues at the moment.
 
-## Improvements
-
-1. create and implement the edit Note functionality.
-
+## Improvements:
+   ## Features:
+   1. Add the feature to take multiple notes for each member.
+   2. add the ability to edit the member details such as first name last name.
+   3. add the ability to upload pdf docs for each member. => add a db table, create the API endpoint, create the page. 
+   ## UI/UX:
+   1. Add padding for mobile view.
+   2. Address style inconsistencies such as button colors, curosr: pointer, button appearnance.
+   3. Make each member row clickable eather than having a button to view more details about each user. 
+ 
 ## Built with
 
 React.
