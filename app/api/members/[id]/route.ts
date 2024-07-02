@@ -91,7 +91,7 @@ export async function PATCH(
 
   const updatedNote = await prisma.note.update({
     where: {
-      id: id,
+      id: noteToUpdate.id,
     },
     data: {
       authorId: member.id,
