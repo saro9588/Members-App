@@ -19,7 +19,7 @@ const NoteForm = ({ id, note }: { id: string; note: note }) => {
   const onSubmit = handleSubmit(async (data) => {
     setIsLoading(true);
     try {
-      if (note && note.id !== "") {
+      if (note && note.id == "") {
         await axios.patch(`/api/members/${note.id}`, {
           id: note.id,
           description: data.description,
