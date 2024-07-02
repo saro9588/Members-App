@@ -26,7 +26,7 @@ const NoteForm = ({ id, note }: { id: string; note: note }) => {
         });
       } else {
         const { data: newNote } = await axios.post(`/api/members/${id}/`, data);
-        if (newNote.authorId) router.push(`/members/${newNote.authorId}/`);
+        router.push(`/members/${newNote.id}/`);
       }
     } catch (error) {
       console.error(error);
