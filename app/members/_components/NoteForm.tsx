@@ -19,14 +19,14 @@ const NoteForm = ({ id, note }: { id: string; note: note }) => {
   const onSubmit = handleSubmit(async (data) => {
     setIsLoading(true);
     try {
-      if (note && note.id == "") {
+      if (note && note.id !== "") {
         await axios.patch(`/api/members/${note.id}`, {
           id: note.id,
           description: data.description,
         });
       } else {
         const { data: newNote } = await axios.post(`/api/members/${id}/`, data);
-        router.push(`/members/${newNote.authorId}/`);
+        if (newNote.authorId) router.push(`/members/${newNote.authorId}/`);
       }
     } catch (error) {
       console.error(error);
