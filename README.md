@@ -1,10 +1,11 @@
 ## Overview
-
 This is an Application that I am developing for my business. I run a private music studio and this app will help me create student portfolios, update and delete them.
 This app can serve other types of users as well. You can create a user, store specific info about each user, update the info of each user.
 
-## Setup
+## Refactor 
+Initially, I used a MySQL database for this project. The database was hosted on PlanetScale's free tier. After one year, my free subscription ended, so I decided instead of paying a monthly fee to host my personal projects, to move the tables to Vercel Storage/Databases. So, I wrote my table with Prisma. However, since Vercel only accepts PostgreSQL and not MySQL, I had to make minor adjustments to the tables. Currently, both my user authentication and authorization tables and data tables are hosted on Vercel. The application is deployed on Vercel too.
 
+## Setup
 1. clone the repo
 2. create a .env file similar to the .env.example file in the project root.
 3. npm install
@@ -32,7 +33,6 @@ No issues at the moment.
    3. Make each member row clickable eather than having a button to view more details about each user. 
  
 ## Built with
-
 React.
 NextJS.
 TypeScript.
