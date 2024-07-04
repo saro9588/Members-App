@@ -2,7 +2,7 @@
 import Link from "next/link";
 import React, { useState } from "react";
 import {
-  AiFillEdit,
+  AiOutlineHome,
   AiOutlinePlus,
   AiOutlineUnorderedList,
 } from "react-icons/ai";
@@ -26,26 +26,26 @@ const NavBar = () => {
   const { data: session } = useSession();
 
   return (
-    <nav className="border-b mb-5 px-5 py-3">
+    <nav className="border-b mb-5 py-3">
       <Container>
         <Flex justify="between">
           <Flex align="center" gap="3">
             <Link href="/">
-              <AiFillEdit />
+              <AiOutlineHome />
             </Link>
             <NavLinks />
             {session && (
               <>
-                <Link href="/members/new">
-                  <Button variant="soft">
-                    <AiOutlinePlus />
-                  </Button>
-                </Link>
                 <Link href="/members">
                   <Button variant="soft">
                     <AiOutlineUnorderedList />
                   </Button>
                 </Link>
+                <Button variant="soft">
+                  <Link href="/members/new">
+                    <AiOutlinePlus />
+                  </Link>
+                </Button>
               </>
             )}
           </Flex>

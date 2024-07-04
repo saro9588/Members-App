@@ -21,7 +21,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className="">
+      <body className="p-2">
         <AuthProvider>
           <Theme radius="large">
             <NavBar />

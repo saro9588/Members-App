@@ -7,13 +7,23 @@ export default function Home() {
   return (
     <>
       <div className="grid grid-cols-1 gap-2 mx-auto max-w-screen-lg">
+        <h1
+          style={{
+            fontWeight: "bold",
+            fontSize: "2.5rem",
+            textAlign: "center",
+          }}
+        >
+          Members App
+        </h1>{" "}
         <Flex align="center" gap="1">
-          <h1 style={{ fontWeight: "bold" }}>Welcome</h1>
-          <SessionUser />!
+          <h1 style={{ fontWeight: "bold" }}>
+            <SessionUser />
+          </h1>
         </Flex>
         <p>
-          This App is designed for creating members, adding and editing notes
-          unique to each member.
+          Welcome, this App is designed for creating members, adding and editing
+          notes unique to each member.
         </p>
         <div className="flex flex-row gap-2 items-start">
           <Link href="/members">
