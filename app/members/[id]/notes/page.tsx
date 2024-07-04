@@ -1,13 +1,20 @@
 import "easymde/dist/easymde.min.css";
 import NoteForm from "../../_components/NoteForm";
+
 interface Props {
   params: { id: string };
 }
-const MemberNoteForm = ({ params }: Props) => {
+const MemberNoteForm = async ({ params }: Props) => {
+  const member = await prisma?.member.findUnique({
+    where: {
+      id: params.id,
+    },
+  });
+
   return (
     <>
       <div className="grid grid-col-1 mx-auto max-w-screen-lg gap-2">
-        <h1 style={{ fontWeight: "bold" }}>Member Notes</h1>
+        <h1 style={{ fontWeight: "bold" }}>Member {member?.firstname} Notes</h1>
         <NoteForm
           id={params.id}
           note={{
