@@ -22,6 +22,7 @@ const EditNotePage = async ({ params }: Props) => {
 
   return (
     <div className="grid grid-col-1 mx-auto max-w-screen-lg gap-2">
+      <h1 style={{ fontWeight: "bold" }}>Update {member?.firstname} Notes</h1>
       <NoteForm id={params.id} note={note} />
     </div>
   );

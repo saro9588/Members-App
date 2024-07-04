@@ -22,7 +22,7 @@ export default function Home() {
           </h1>
         </Flex>
         <p>
-          Welcome, this App is designed for creating members, adding and editing
+          Welcome, this app is designed for creating members, adding and editing
           notes unique to each member.
         </p>
         <div className="flex flex-row gap-2 items-start">
