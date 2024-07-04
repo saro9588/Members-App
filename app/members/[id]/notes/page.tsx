@@ -1,11 +1,12 @@
 import "easymde/dist/easymde.min.css";
 import NoteForm from "../../_components/NoteForm";
+import prisma from "@/prisma/client";
 
 interface Props {
   params: { id: string };
 }
 const MemberNoteForm = async ({ params }: Props) => {
-  const member = await prisma?.member.findUnique({
+  const member = await prisma.member.findUnique({
     where: {
       id: params.id,
     },
